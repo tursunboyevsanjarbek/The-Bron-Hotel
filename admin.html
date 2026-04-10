@@ -91,11 +91,22 @@
         </div>
 
         <!-- Table Card -->
-        <div class="card">
-          <div class="card-header">
-            <h2 class="card-title">Barcha Bronlar</h2>
-            <div class="card-actions">
-              <input type="text" id="search-input" class="search-input" placeholder="Mijoz ismi yoki ID si bo'yicha qidirish...">
+        <div class="card glass-panel">
+          <div class="card-header" style="padding: 24px; border-bottom: 1px solid var(--border-color); display: flex; flex-direction: column; gap: 20px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <h2 class="header-title" style="margin: 0;">Barcha Bronlar</h2>
+            </div>
+            
+            <div class="filters-wrap">
+              <div class="filter-tabs">
+                <button class="filter-btn active" data-filter="all">Barchasi</button>
+                <button class="filter-btn" data-filter="kutilmoqda">Kutilayotganlar</button>
+                <button class="filter-btn" data-filter="tasdiqlandi">Tasdiqlanganlar</button>
+                <button class="filter-btn" data-filter="bekor_qilindi">Bekor bo'lganlar</button>
+              </div>
+              <div class="card-actions">
+                <input type="text" id="search-input" class="search-input" placeholder="Ism, Email yoki Tel bo'yicha izlash...">
+              </div>
             </div>
           </div>
           <div class="table-responsive">
@@ -126,6 +137,9 @@
       </div>
     </main>
   </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container"></div>
 
   <script src="admin.js"></script>
 </body>
