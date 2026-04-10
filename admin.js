@@ -17,14 +17,6 @@ let allBookings = [];
 let currentFilter = 'all';
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Logout
-  const logoutBtn = document.getElementById('logout-btn');
-  if (logoutBtn) {
-    logoutBtn.addEventListener('click', () => {
-      sessionStorage.removeItem('adminLoggedIn');
-      window.location.href = 'login.html';
-    });
-  }
 
   // Firebase Init
   try {
@@ -75,9 +67,12 @@ function applyFilters() {
   
   const filtered = allBookings.filter(b => {
     // 1. Matnli qidiruv
-    const matchText = (b.name && b.name.toLowerCase().includes(term)) ||
-                      (b.phone && b.phone.includes(term)) ||
-                      (b.email && b.email.toLowerCase().includes(term));
+    let matchText = true;
+    if (term) {
+      matchText = (b.name && b.name.toLowerCase().includes(term)) ||
+                  (b.phone && b.phone.includes(term)) ||
+                  (b.email && b.email.toLowerCase().includes(term));
+    }
                       
     // 2. Holat bo'yicha filter
     let matchStatus = true;

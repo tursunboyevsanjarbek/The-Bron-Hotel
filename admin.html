@@ -17,6 +17,11 @@
     if (sessionStorage.getItem('adminLoggedIn') !== 'true') {
       window.location.href = 'login.html';
     }
+    
+    function performLogout() {
+      sessionStorage.clear();
+      window.location.href = 'login.html';
+    }
   </script>
 
   <div class="admin-layout">
@@ -40,7 +45,7 @@
         </li>
       </ul>
       <div class="sidebar-logout">
-        <button id="logout-btn">
+        <button id="logout-btn" onclick="performLogout()" style="cursor: pointer;">
           <span class="icon">🚪</span> <span class="text">Chiqish</span>
         </button>
       </div>
