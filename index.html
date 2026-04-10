@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grand Luxe Hotel — Hashamatli Dam Olish Maskani</title>
+  <meta name="description" content="Grand Luxe Hotel — Toshkentdagi eng nufuzli va hashamatli mehmonxona. Onlayn bron qiling, maxsus xizmatlardan bahramand bo'ling." />
+  <meta name="keywords" content="mehmonxona, hotel, bron, Toshkent, luxe, hashamat" />
+  <meta property="og:title" content="Grand Luxe Hotel" />
+  <meta property="og:description" content="Hashamatli dam olish maskani — Toshkent" />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏨</text></svg>" />
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Firebase v9 SDK (compat mode) -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+</head>
+<body>
+
+<!-- ══════════════════════════════
+     NAVBAR
+══════════════════════════════ -->
+<nav id="navbar">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#home" class="nav-logo" id="nav-logo">
+        <span class="logo-main">Grand Luxe</span>
+        <span class="logo-sub">Hotel & Resort</span>
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#home">Bosh sahifa</a></li>
+        <li><a href="#rooms">Xonalar</a></li>
+        <li><a href="#services">Xizmatlar</a></li>
+        <li><a href="#gallery">Galereya</a></li>
+        <li><a href="#reviews">Sharhlar</a></li>
+        <li><a href="#contact">Aloqa</a></li>
+      </ul>
+      <a href="#booking" class="btn btn-gold nav-book" id="nav-book-btn">Bron qilish</a>
+      <div class="hamburger" id="hamburger" aria-label="Menyu" role="button" tabindex="0">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════
+     HERO
+══════════════════════════════ -->
+<section id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-particles"></div>
+  <div class="hero-deco-line"></div>
+  <div class="hero-content">
+    <div class="hero-badge">5 yulduzli mehmonxona • Toshkent</div>
+    <h1 class="hero-title">
+      Hashamat va <span class="accent">Qulaylik</span><br>Bir Joyda
+    </h1>
+    <p class="hero-desc">
+      Grand Luxe Hotel — dam olish va biznes sayohatlari uchun eng yaxshi tanlov.
+      Sizning har bir xohishingiz bizning ustuvorligimiz.
+    </p>
+    <div class="hero-actions">
+      <a href="#booking" class="btn btn-gold" id="hero-book-btn">
+        <span>Hozir Bron Qiling</span> <span>→</span>
+      </a>
+      <a href="#rooms" class="btn btn-outline" id="hero-rooms-btn">Xonalarni Ko'rish</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <span class="num" id="stat-guests">2,400+</span>
+      <span class="lbl">Mamnun Mehmon</span>
+    </div>
+    <div class="hero-stat">
+      <span class="num">50+</span>
+      <span class="lbl">Zamonaviy Xona</span>
+    </div>
+    <div class="hero-stat">
+      <span class="num">12</span>
+      <span class="lbl">Yillik Tajriba</span>
+    </div>
+    <div class="hero-stat">
+      <span class="num">4.9★</span>
+      <span class="lbl">O'rtacha Baho</span>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Pastga</span>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     ABOUT
+══════════════════════════════ -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-visual reveal">
+        <div class="about-img-main">
+          <div class="about-img-inner">🏛️</div>
+        </div>
+        <div class="about-badge-float">
+          <span class="num">12+</span>
+          <span class="txt">Yillik Tajriba</span>
+        </div>
+      </div>
+      <div class="about-content reveal">
+        <span class="section-label">Biz Haqimizda</span>
+        <h2 class="section-title">Sizni Xush Kelibsiz,<br><span class="gold">Aziz Mehmon</span></h2>
+        <p class="about-text">
+          Grand Luxe Hotel 2012-yildan buyon Toshkentda hashamatli mehmonxona xizmatlarini taqdim etib kelmoqda.
+          Biz har bir mehmonimizga shaxsiy e'tibor qaratamiz va unutilmas tajriba yaratamiz.
+        </p>
+        <p class="about-text">
+          Zamonaviy dizayn, an'anaviy O'zbek mehmonnomashunosligi va dunyo darajasidagi xizmatlarni birlashtirib,
+          siz uchun mukammal dam olish muhitini taqdim etamiz.
+        </p>
+        <div class="about-features">
+          <div class="about-feat"><span class="icon">🍽️</span> Fine Dining Restoran</div>
+          <div class="about-feat"><span class="icon">🏊</span> Yopiq Hovuz</div>
+          <div class="about-feat"><span class="icon">💆</span> Spa & Wellness</div>
+          <div class="about-feat"><span class="icon">🏋️</span> Fitnes Markazi</div>
+          <div class="about-feat"><span class="icon">🅿️</span> Bepul Avtoturargoh</div>
+          <div class="about-feat"><span class="icon">📶</span> Tezkor Wi-Fi</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     ROOMS
+══════════════════════════════ -->
+<section id="rooms">
+  <div class="container">
+    <div class="rooms-head text-center reveal">
+      <span class="section-label">Xonalarimiz</span>
+      <h2 class="section-title">Qulay va Hashamatli Xonalar</h2>
+      <p class="section-sub">Har bir xonamiz siz uchun alohida muhit va maksimal qulaylik bilan jihozlangan</p>
+    </div>
+    <div class="rooms-grid">
+
+      <!-- Standard -->
+      <div class="room-card reveal" data-room="Standart Xona" data-price="89">
+        <div class="room-img">
+          <div class="room-img-bg standard"></div>
+          <span class="room-emoji">🛏️</span>
+          <span class="room-badge">Mashhur</span>
+        </div>
+        <div class="room-body">
+          <h3 class="room-name">Standart Xona</h3>
+          <p class="room-desc">Qulay va zamonaviy jihozlangan xona. Shahar manzarali oyna, ish stoli va barcha zarur qulayliklar mavjud.</p>
+          <div class="room-amenities">
+            <span class="amenity-tag">👤 1-2 kishi</span>
+            <span class="amenity-tag">📺 Smart TV</span>
+            <span class="amenity-tag">❄️ Konditsioner</span>
+            <span class="amenity-tag">🛁 Hammom</span>
+            <span class="amenity-tag">☕ Mini-bar</span>
+          </div>
+          <div class="room-footer">
+            <div class="room-price">
+              <span class="price-num">$89</span>
+              <span class="price-label">bir kecha uchun</span>
+            </div>
+            <button class="room-book" onclick="selectRoom('Standart Xona', 89)" id="book-standard">Bron Qilish</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Deluxe -->
+      <div class="room-card reveal" data-room="Deluxe Xona" data-price="149">
+        <div class="room-img">
+          <div class="room-img-bg deluxe"></div>
+          <span class="room-emoji">👑</span>
+          <span class="room-badge" style="background: linear-gradient(135deg,#C9A96E,#A07840);">Deluxe</span>
+        </div>
+        <div class="room-body">
+          <h3 class="room-name">Deluxe Xona</h3>
+          <p class="room-desc">Keng king-size karavot, shaxsiy balkon va panoramik shahar ko'rinishi. Hashamat va qulaylikning uyg'unligi.</p>
+          <div class="room-amenities">
+            <span class="amenity-tag">👥 1-3 kishi</span>
+            <span class="amenity-tag">🛏️ King Bed</span>
+            <span class="amenity-tag">🌆 Balkon</span>
+            <span class="amenity-tag">🛁 Jacuzzi</span>
+            <span class="amenity-tag">🍷 Mini-bar</span>
+          </div>
+          <div class="room-footer">
+            <div class="room-price">
+              <span class="price-num">$149</span>
+              <span class="price-label">bir kecha uchun</span>
+            </div>
+            <button class="room-book" onclick="selectRoom('Deluxe Xona', 149)" id="book-deluxe">Bron Qilish</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Suite -->
+      <div class="room-card reveal" data-room="Lyuks Suite" data-price="299">
+        <div class="room-img">
+          <div class="room-img-bg suite"></div>
+          <span class="room-emoji">💎</span>
+          <span class="room-badge" style="background: linear-gradient(135deg,#2d6a4f,#1b4332);">Suite</span>
+        </div>
+        <div class="room-body">
+          <h3 class="room-name">Lyuks Suite</h3>
+          <p class="room-desc">Alohida mehmonxona va yotoqxona, to'liq mebelli kuhnya, shaxsiy butler xizmati va panoramik manzara.</p>
+          <div class="room-amenities">
+            <span class="amenity-tag">👨‍👩‍👧 1-4 kishi</span>
+            <span class="amenity-tag">🏠 2 xona</span>
+            <span class="amenity-tag">🛁 Premium Jacuzzi</span>
+            <span class="amenity-tag">🤵 Butler</span>
+            <span class="amenity-tag">🍾 Champagne</span>
+          </div>
+          <div class="room-footer">
+            <div class="room-price">
+              <span class="price-num">$299</span>
+              <span class="price-label">bir kecha uchun</span>
+            </div>
+            <button class="room-book" onclick="selectRoom('Lyuks Suite', 299)" id="book-suite">Bron Qilish</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     SERVICES
+══════════════════════════════ -->
+<section id="services">
+  <div class="container">
+    <div class="services-head text-center reveal">
+      <span class="section-label">Xizmatlarimiz</span>
+      <h2 class="section-title">Barcha Ehtiyojingiz Uchun</h2>
+      <p class="section-sub">Mehmonlarimizga eng yaxshi tajribani taqdim etish uchun keng qamrovli xizmatlar majmuasi</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-icon">🍽️</div>
+        <h3 class="service-name">Fine Dining</h3>
+        <p class="service-desc">O'zbek va xalqaro oshxonalar. Har kuni nonushta, tushlik va kechki ovqat. Shaxsiy oshpaz xizmati.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">💆</div>
+        <h3 class="service-name">Spa & Wellness</h3>
+        <p class="service-desc">To'liq spa majmuasi: massaj, aromaterapiya, gidroterapiya va go'zallik salonlari.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">🏊</div>
+        <h3 class="service-name">Yopiq Hovuz</h3>
+        <p class="service-desc">Isitilgan yopiq hovuz, gidromasaj, sauna va bug' hammomi. 24/7 ochiq.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">🏋️</div>
+        <h3 class="service-name">Fitnes Markazi</h3>
+        <p class="service-desc">Zamonaviy jihozlar, shaxsiy murabbiy xizmati, yoga va meditatsiya darslari.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">🤵</div>
+        <h3 class="service-name">Konsyerj Xizmati</h3>
+        <p class="service-desc">24/7 konsyerj, shahar bo'ylab ekskursiyalar, teatr chiptalarini buyurtma qilish.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">🚗</div>
+        <h3 class="service-name">Transfer Xizmati</h3>
+        <p class="service-desc">Aeroport va temir yo'l stantsiyasidan kutib olish, premium avtomobil ijarasi.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">🎭</div>
+        <h3 class="service-name">Tadbirlar Zali</h3>
+        <p class="service-desc">Konferentsiyalar, to'ylar va maxsus tadbirlar uchun keng muhtasham zallar.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">🧸</div>
+        <h3 class="service-name">Bolalar Xizmati</h3>
+        <p class="service-desc">Bolalar o'yin xonasi, bolalar hovuzi, animatorlar va maxsus menyu.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     GALLERY
+══════════════════════════════ -->
+<section id="gallery">
+  <div class="container">
+    <div class="gallery-head text-center reveal">
+      <span class="section-label">Galereya</span>
+      <h2 class="section-title">Mehmonxonamiz Bilan Tanishing</h2>
+    </div>
+    <div class="gallery-grid reveal">
+      <div class="gallery-item">
+        <div class="gallery-item-inner gallery-bg-1">🏛️</div>
+        <div class="gallery-overlay"><span class="gallery-overlay-text">Grand Lobby</span></div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-item-inner gallery-bg-2">🛏️</div>
+        <div class="gallery-overlay"><span class="gallery-overlay-text">Deluxe Xona</span></div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-item-inner gallery-bg-3">🏊</div>
+        <div class="gallery-overlay"><span class="gallery-overlay-text">Yopiq Hovuz</span></div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-item-inner gallery-bg-4">🍽️</div>
+        <div class="gallery-overlay"><span class="gallery-overlay-text">Fine Dining Restoran</span></div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-item-inner gallery-bg-5">💆</div>
+        <div class="gallery-overlay"><span class="gallery-overlay-text">Spa & Wellness</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     BOOKING
+══════════════════════════════ -->
+<section id="booking">
+  <div class="container">
+    <div class="booking-head text-center reveal">
+      <span class="section-label">Onlayn Bron</span>
+      <h2 class="section-title">Xonangizni Hozir Band Qiling</h2>
+      <p class="section-sub">Ma'lumotlaringizni kiriting, biz 30 daqiqa ichida siz bilan bog'lanamiz</p>
+    </div>
+    <div class="booking-wrapper reveal">
+
+      <!-- Firebase status -->
+      <div class="firebase-status" id="firebase-status">
+        <div class="status-dot" id="status-dot"></div>
+        <span id="status-text">Firebase baza ulanmoqda...</span>
+      </div>
+
+      <!-- Setup Banner (shown only if firebase not configured) -->
+      <div class="setup-banner" id="setup-banner" style="display:none;">
+        <span class="setup-icon">⚠️</span>
+        <div class="setup-text">
+          <strong>Firebase sozlash kerak!</strong> — Real baza uchun <code>main.js</code> faylida
+          <strong>FIREBASE_CONFIG</strong> o'zgaruvchisiga o'z Firebase loyihangizdagi
+          konfiguratsiyani kiriting.
+          <a href="https://console.firebase.google.com/" target="_blank" rel="noopener">Firebase Console →</a>
+        </div>
+      </div>
+
+      <form class="booking-form" id="booking-form" novalidate>
+        <div class="form-group">
+          <label class="form-label" for="field-name">Ism va Familiya *</label>
+          <input class="form-input" type="text" id="field-name" name="name" placeholder="Masalan: Alisher Umarov" required autocomplete="name" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="field-email">Email Manzil *</label>
+          <input class="form-input" type="email" id="field-email" name="email" placeholder="email@example.com" required autocomplete="email" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="field-phone">Telefon Raqam *</label>
+          <input class="form-input" type="tel" id="field-phone" name="phone" placeholder="+998 90 123 45 67" required autocomplete="tel" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="field-room">Xona Turi *</label>
+          <select class="form-select" id="field-room" name="room" required>
+            <option value="" disabled selected>Xona turini tanlang</option>
+            <option value="Standart Xona — $89/kecha">🛏️ Standart Xona — $89/kecha</option>
+            <option value="Deluxe Xona — $149/kecha">👑 Deluxe Xona — $149/kecha</option>
+            <option value="Lyuks Suite — $299/kecha">💎 Lyuks Suite — $299/kecha</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="field-checkin">Kelish Sanasi *</label>
+          <input class="form-input" type="date" id="field-checkin" name="checkin" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="field-checkout">Ketish Sanasi *</label>
+          <input class="form-input" type="date" id="field-checkout" name="checkout" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="field-guests">Mehmonlar Soni *</label>
+          <select class="form-select" id="field-guests" name="guests" required>
+            <option value="" disabled selected>Tanlang</option>
+            <option value="1">1 kishi</option>
+            <option value="2">2 kishi</option>
+            <option value="3">3 kishi</option>
+            <option value="4">4 kishi</option>
+            <option value="5+">5+ kishi</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="field-source">Qayerdan Bildingiz?</label>
+          <select class="form-select" id="field-source" name="source">
+            <option value="">Tanlang (ixtiyoriy)</option>
+            <option value="Google">Google orqali</option>
+            <option value="Do'stlar orqali">Do'stlar orqali</option>
+            <option value="Ijtimoiy tarmoqlar">Ijtimoiy tarmoqlar</option>
+            <option value="Booking.com">Booking.com</option>
+            <option value="Boshqa">Boshqa</option>
+          </select>
+        </div>
+        <div class="form-group full-width">
+          <label class="form-label" for="field-notes">Maxsus Talablar</label>
+          <textarea class="form-textarea" id="field-notes" name="notes" placeholder="Qo'shimcha xohishlar, maxsus holat yoki savollaringizni yozing..."></textarea>
+        </div>
+        <div class="form-submit">
+          <button type="submit" class="submit-btn" id="submit-btn">
+            <span id="submit-text">🏨 Bronni Tasdiqlash</span>
+          </button>
+        </div>
+        <p class="form-note">
+          🔒 Ma'lumotlaringiz Firebase Firestore'da xavfsiz saqlanadi. Biz 30 daqiqa ichida siz bilan bog'lanamiz.
+        </p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     REVIEWS
+══════════════════════════════ -->
+<section id="reviews">
+  <div class="container">
+    <div class="reviews-head text-center reveal">
+      <span class="section-label">Mijozlar Fikri</span>
+      <h2 class="section-title">Ular Nima Deydi?</h2>
+    </div>
+    <div class="reviews-slider reveal">
+      <div class="review-card active" id="rev-0">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Grand Luxe Hotel — men bo'lgan eng ajoyib mehmonxona. Xizmat darajasi, xona sifati va oziq-ovqat hech narsada nuqson yo'q. Albatta qaytaman!"</p>
+        <div class="review-author">
+          <div class="review-avatar">A</div>
+          <div class="review-info">
+            <div class="name">Aziz Karimov</div>
+            <div class="location">📍 Toshkent, O'zbekiston</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card" id="rev-1">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Spa va hovuz xizmatlari umid qilganimdan ham yaxshi chiqdi. Xodimlar juda muloyim va professional. Butun oila bilan dam olish uchun ideal joy!"</p>
+        <div class="review-author">
+          <div class="review-avatar">M</div>
+          <div class="review-info">
+            <div class="name">Malika Yusupova</div>
+            <div class="location">📍 Samarqand, O'zbekiston</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card" id="rev-2">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Biznes safari uchun ajoyib tanlov. Tezkor Wi-Fi, konferents-zal va 24/7 konsyerj xizmati — hammasi mukammal darajada ishladi."</p>
+        <div class="review-author">
+          <div class="review-avatar">J</div>
+          <div class="review-info">
+            <div class="name">James Wilson</div>
+            <div class="location">📍 London, Buyuk Britaniya</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card" id="rev-3">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"To'y kechami shu yerda o'tkazdik — hamma narsa ideal edi! Zal bezatilishi, ovqat va xizmat darajasi mehmonlarimizni hayratda qoldirdi."</p>
+        <div class="review-author">
+          <div class="review-avatar">N</div>
+          <div class="review-info">
+            <div class="name">Nodira Rashidova</div>
+            <div class="location">📍 Farg'ona, O'zbekiston</div>
+          </div>
+        </div>
+      </div>
+      <div class="reviews-nav">
+        <button class="rev-btn" id="rev-prev" aria-label="Oldingi">‹</button>
+        <div class="rev-dots">
+          <div class="rev-dot active" data-idx="0"></div>
+          <div class="rev-dot" data-idx="1"></div>
+          <div class="rev-dot" data-idx="2"></div>
+          <div class="rev-dot" data-idx="3"></div>
+        </div>
+        <button class="rev-btn" id="rev-next" aria-label="Keyingi">›</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     CONTACT
+══════════════════════════════ -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <span class="section-label">Aloqa</span>
+        <h2 class="section-title contact-title">Biz Bilan <span class="gold">Bog'laning</span></h2>
+        <div class="contact-items">
+          <div class="contact-item">
+            <div class="contact-item-icon">📍</div>
+            <div class="contact-item-text">
+              <div class="label">Manzil</div>
+              <div class="value">Mustaqillik ko'chasi 1, Toshkent 100029, O'zbekiston</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">📞</div>
+            <div class="contact-item-text">
+              <div class="label">Telefon</div>
+              <div class="value">+998 (71) 200-00-01</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">📧</div>
+            <div class="contact-item-text">
+              <div class="label">Email</div>
+              <div class="value">info@grandluxe.uz</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">🕐</div>
+            <div class="contact-item-text">
+              <div class="label">Qabulxona</div>
+              <div class="value">24 soat / 7 kun</div>
+            </div>
+          </div>
+        </div>
+        <div class="contact-socials">
+          <a href="#" class="social-btn" title="Instagram" id="social-instagram">📸</a>
+          <a href="#" class="social-btn" title="Facebook" id="social-facebook">📘</a>
+          <a href="#" class="social-btn" title="Telegram" id="social-telegram">✈️</a>
+          <a href="#" class="social-btn" title="YouTube" id="social-youtube">▶️</a>
+        </div>
+      </div>
+      <div class="map-container reveal" id="map-container">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2996.5!2d69.2793!3d41.2995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae8b0cc379e9c3%3A0xa5a9323b4aa5cb98!2sTashkent%2C%20Uzbekistan!5e0!3m2!1sen!2sus!4v1234567890"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Grand Luxe Hotel joylashuvi">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     FOOTER
+══════════════════════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">Grand Luxe</div>
+        <p class="footer-tagline">
+          Toshkentdagi eng nufuzli va hashamatli mehmonxona.
+          Har bir mehmonimizga unutilmas tajriba yaratamiz.
+        </p>
+      </div>
+      <div>
+        <div class="footer-col-title">Sahifalar</div>
+        <ul class="footer-links">
+          <li><a href="#home">Bosh sahifa</a></li>
+          <li><a href="#about">Biz haqimizda</a></li>
+          <li><a href="#rooms">Xonalar</a></li>
+          <li><a href="#services">Xizmatlar</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Xizmatlar</div>
+        <ul class="footer-links">
+          <li><a href="#services">Fine Dining</a></li>
+          <li><a href="#services">Spa & Wellness</a></li>
+          <li><a href="#services">Hovuz</a></li>
+          <li><a href="#services">Tadbirlar</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Aloqa</div>
+        <ul class="footer-links">
+          <li><a href="tel:+998712000001">+998 71 200-00-01</a></li>
+          <li><a href="mailto:info@grandluxe.uz">info@grandluxe.uz</a></li>
+          <li><a href="#contact">Xarita</a></li>
+          <li><a href="#booking">Bron qilish</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2024 Grand Luxe Hotel. Barcha huquqlar himoyalangan.</span>
+      <span>🏨 Toshkent, O'zbekiston</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════════════════════════
+     SUCCESS MODAL
+══════════════════════════════ -->
+<div class="modal-overlay" id="success-modal">
+  <div class="modal-box">
+    <span class="modal-icon" id="modal-icon">✅</span>
+    <h2 class="modal-title" id="modal-title">Bron Tasdiqlandi!</h2>
+    <p class="modal-desc" id="modal-desc">
+      Sizning broningiz muvaffaqiyatli saqlandi. Biz tez orada siz bilan bog'lanamiz.
+    </p>
+    <div class="modal-ref" id="modal-ref">GLH-000000</div>
+    <button class="modal-close-btn" id="modal-close-btn" onclick="closeModal()">Yaxshi, Rahmat!</button>
+  </div>
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>
