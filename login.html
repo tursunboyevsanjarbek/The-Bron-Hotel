@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login - Grand Luxe Hotel</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body class="login-body">
+  <div class="login-container">
+    <div class="login-header">
+      <div class="login-logo">Grand Luxe</div>
+      <h2>Boshqaruv Paneliga Kirish</h2>
+    </div>
+    
+    <form id="login-form" class="login-form">
+      <div class="form-group">
+        <label for="username">Login</label>
+        <input type="text" id="username" placeholder="Loginni kiriting" required autocomplete="username">
+      </div>
+      <div class="form-group">
+        <label for="password">Parol</label>
+        <input type="password" id="password" placeholder="Parolni kiriting" required autocomplete="current-password">
+      </div>
+      
+      <div id="login-error" class="login-error" style="display: none;">
+        Login yoki parol nato'g'ri!
+      </div>
+      
+      <button type="submit" class="btn-login">Kirish</button>
+    </form>
+    
+    <div class="login-footer">
+      <a href="index.html">← Bosh sahifaga qaytish</a>
+    </div>
+  </div>
+
+  <script src="login.js"></script>
+</body>
+</html>

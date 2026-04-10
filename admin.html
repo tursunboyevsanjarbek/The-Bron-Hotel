@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - Grand Luxe Hotel</title>
+  <link rel="stylesheet" href="admin.css">
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+</head>
+<body>
+
+  <!-- Agar avtorizatsiya bo'lmasa qoraytirish -> login.js hal qiladi -->
+  <script>
+    if (sessionStorage.getItem('adminLoggedIn') !== 'true') {
+      window.location.href = 'login.html';
+    }
+  </script>
+
+  <div class="admin-layout">
+    
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <span class="icon">🏨</span>
+        <span class="text">Grand Luxe</span>
+      </div>
+      <ul class="sidebar-menu">
+        <li>
+          <a href="#" class="active">
+            <span class="icon">📊</span> <span class="text">Boshqaruv Paneli</span>
+          </a>
+        </li>
+        <li>
+          <a href="index.html" target="_blank">
+            <span class="icon">🌐</span> <span class="text">Saytga o'tish</span>
+          </a>
+        </li>
+      </ul>
+      <div class="sidebar-logout">
+        <button id="logout-btn">
+          <span class="icon">🚪</span> <span class="text">Chiqish</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header class="admin-header">
+        <div class="header-title">Bronlar Tizimi (Dashboard)</div>
+        <div class="header-user">
+          <div class="header-user-avatar">A</div>
+          <span>Admin</span>
+        </div>
+      </header>
+
+      <div class="admin-body">
+        
+        <!-- Stats -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon">📈</div>
+            <div class="stat-info">
+              <div class="stat-val" id="stat-total">-</div>
+              <div class="stat-lbl">Jami Bronlar</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" style="color: #856404; background: #fff3cd;">⏳</div>
+            <div class="stat-info">
+              <div class="stat-val" id="stat-pending">-</div>
+              <div class="stat-lbl">Kutilayotgan</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" style="color: #155724; background: #d4edda;">✅</div>
+            <div class="stat-info">
+              <div class="stat-val" id="stat-confirmed">-</div>
+              <div class="stat-lbl">Tasdiqlangan</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" style="color: #721c24; background: #f8d7da;">💰</div>
+            <div class="stat-info">
+              <div class="stat-val" id="stat-income">$0</div>
+              <div class="stat-lbl">Bugungi Tushum</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Table Card -->
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Barcha Bronlar</h2>
+            <div class="card-actions">
+              <input type="text" id="search-input" class="search-input" placeholder="Mijoz ismi yoki ID si bo'yicha qidirish...">
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Mijoz</th>
+                  <th>Xona / Mehmonlar</th>
+                  <th>Sanalar (Kelish / Ketish)</th>
+                  <th>Sana berildi</th>
+                  <th>Holat</th>
+                  <th>Amallar</th>
+                </tr>
+              </thead>
+              <tbody id="table-body">
+                <tr>
+                  <td colspan="6">
+                    <div class="admin-loader">
+                      <div class="spinner"></div> Yuklanmoqda...
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>
