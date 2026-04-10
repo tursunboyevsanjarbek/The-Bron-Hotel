@@ -195,8 +195,9 @@ button { cursor: pointer; border: none; font-family: inherit; }
 #home {
   position: relative;
   height: 100vh;
-  min-height: 700px;
+  min-height: 800px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   overflow: hidden;
@@ -252,7 +253,6 @@ button { cursor: pointer; border: none; font-family: inherit; }
   text-align: center;
   max-width: 800px;
   padding: 0 20px;
-  margin-bottom: 80px;
 }
 .hero-badge {
   display: inline-flex;
@@ -326,13 +326,12 @@ button { cursor: pointer; border: none; font-family: inherit; }
   50% { opacity: 0.4; transform: scaleY(0.7); }
 }
 .hero-stats {
-  position: absolute;
-  bottom: 30px;
-  left: 0; right: 0;
+  position: relative;
   display: flex;
   justify-content: center;
   gap: 60px;
   animation: fadeInUp 1s ease 0.8s both;
+  margin-top: 80px;
 }
 .hero-stat { text-align: center; }
 .hero-stat .num {
