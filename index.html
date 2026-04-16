@@ -9,27 +9,28 @@
 <body>
   <header class="site-header">
     <nav class="nav">
-      <a class="brand" href="#top">Grand Luxe Hotel</a>
+      <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"></span> Grand Luxe Hotel</a>
       <div class="nav-links">
         <a class="nav-link" href="#rooms">Xonalar</a>
         <a class="nav-link" href="#services">Xizmatlar</a>
         <a class="nav-link" href="#booking">Bron</a>
       </div>
       <div class="nav-actions">
-        <a class="btn-outline" href="./login.html">Admin login</a>
+        <a class="btn-outline" href="./login.html">Admin</a>
       </div>
     </nav>
   </header>
 
   <main id="top">
     <section class="hero">
+      <div class="hero-bg" aria-hidden="true"></div>
       <div class="hero-inner">
         <div class="hero-copy">
-          <span class="badge">Real-time bronlash tizimi</span>
+          <span class="badge">Real-time bronlash</span>
           <h1>Hashamat va qulaylik bir joyda</h1>
-          <p>
-            Grand Luxe Hotel uchun production tayyor bronlash sahifasi. Bronlar Firebase orqali
-            ishonchli saqlanadi, band sanalar tekshiriladi va admin panel orqali boshqariladi.
+          <p class="hero-lead">
+            Grand Luxe Hotel uchun zamonaviy bronlash tajribasi. Bronlar Firebase orqali xavfsiz saqlanadi,
+            band sanalar tekshiriladi va admin panel orqali boshqariladi.
           </p>
           <div class="hero-stats">
             <div class="stat-card">
@@ -42,24 +43,24 @@
             </div>
             <div class="stat-card">
               <strong>Real-time</strong>
-              <div class="muted">Availability tekshiruvi</div>
+              <div class="muted">Mavjudlik</div>
             </div>
             <div class="stat-card">
               <strong>Admin</strong>
-              <div class="muted">Tasdiqlash paneli</div>
+              <div class="muted">Tasdiqlash</div>
             </div>
           </div>
         </div>
 
         <div class="hero-side">
-          <div class="booking-card">
+          <div class="booking-card glass-card">
             <h2>Bron holati</h2>
             <div id="firebase-status" class="status-strip status-warn">
               Firebase ulanish tekshirilmoqda...
             </div>
             <p class="inline-note">
-              Bron yaratish callable Cloud Function orqali amalga oshadi. Agar saqlashda xatolik
-              bo'lsa, foydalanuvchiga ochiq xabar ko'rsatiladi.
+              Bronlar Firestore transaksiyasi bilan yaratiladi: sanalar va bandlik serverda tekshiriladi.
+              Xatolik bo‘lsa, ochiq xabar ko‘rsatiladi.
             </p>
             <a class="btn" href="#booking">Hozir bron qiling</a>
           </div>
@@ -67,36 +68,57 @@
       </div>
     </section>
 
-    <section id="rooms" class="section">
+    <section id="rooms" class="section section-alt">
       <div class="section-inner">
-        <h2>Xonalarimiz</h2>
-        <p class="section-lead">
-          Narx, sig'im va xizmatlar statik UI emas, balki serverdagi katalogga mos model asosida ishlatiladi.
-        </p>
+        <header class="section-head">
+          <p class="eyebrow">Katalog</p>
+          <h2>Xonalarimiz</h2>
+          <p class="section-lead">
+            Narx, sig‘im va qulayliklar katalog modeli asosida ko‘rsatiladi — forma bilan bir xil ma’lumot.
+          </p>
+        </header>
         <div id="rooms-grid" class="room-grid"></div>
       </div>
     </section>
 
     <section id="services" class="section">
       <div class="section-inner">
-        <h2>Xizmatlar</h2>
-        <p class="section-lead">
-          Mehmonlar uchun premium xizmatlar majmuasi booking bilan bog'langan operatsion oqim bilan ishlaydi.
-        </p>
+        <header class="section-head">
+          <p class="eyebrow">Tajriba</p>
+          <h2>Xizmatlar</h2>
+          <p class="section-lead">
+            Premium xizmatlar bron jarayoni bilan uyg‘unlashgan — talablaringiz yozuvda saqlanadi.
+          </p>
+        </header>
         <div class="service-grid">
-          <div class="service-card"><h3>Airport transfer</h3><p class="muted">So'rov asosida premium kutib olish.</p></div>
-          <div class="service-card"><h3>Spa & Wellness</h3><p class="muted">Oldindan band qilinadigan dam olish xizmati.</p></div>
-          <div class="service-card"><h3>Fine Dining</h3><p class="muted">Maxsus ovqatlanish talablari bookingda saqlanadi.</p></div>
+          <div class="service-card">
+            <span class="service-icon" aria-hidden="true">✦</span>
+            <h3>Airport transfer</h3>
+            <p class="muted">So‘rov asosida premium kutib olish.</p>
+          </div>
+          <div class="service-card">
+            <span class="service-icon" aria-hidden="true">◇</span>
+            <h3>Spa &amp; Wellness</h3>
+            <p class="muted">Oldindan band qilinadigan dam olish.</p>
+          </div>
+          <div class="service-card">
+            <span class="service-icon" aria-hidden="true">◈</span>
+            <h3>Fine Dining</h3>
+            <p class="muted">Maxsus ovqatlanish talablari saqlanadi.</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="booking" class="section">
+    <section id="booking" class="section section-booking">
       <div class="section-inner">
-        <h2>Onlayn bron</h2>
-        <p class="section-lead">
-          Forma ma'lumotlari server tomonda tekshiriladi: sanalar, sig'im, overlap booking va booking reference.
-        </p>
+        <header class="section-head">
+          <p class="eyebrow">Bron</p>
+          <h2>Onlayn bron</h2>
+          <p class="section-lead">
+            Sanalar, sig‘im, bandlik va bron referensi server tomonda tekshiriladi.
+          </p>
+        </header>
         <div class="booking-card">
           <div id="form-message" class="status-strip status-warn hidden"></div>
           <form id="booking-form">
@@ -180,9 +202,9 @@
 
   <footer class="site-footer">
     <div class="footer-inner">
-      <div>
+      <div class="footer-brand">
         <strong>Grand Luxe Hotel</strong>
-        <p class="muted">Toshkent uchun production-ready booking tajribasi.</p>
+        <p class="muted">Toshkent uchun zamonaviy bronlash tajribasi.</p>
       </div>
       <div>
         <strong>Aloqa</strong>

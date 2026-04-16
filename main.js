@@ -35,15 +35,18 @@ function renderRooms() {
     .map(
       (room) => `
       <article class="room-card">
-        <span class="badge">${room.badge}</span>
-        <h3>${room.name}</h3>
-        <p class="muted">${room.description}</p>
-        <div class="price">$${room.price} / kecha</div>
-        <div class="muted">Sig'im: ${room.capacity} kishi</div>
-        <div class="amenities">
-          ${room.amenities.map((item) => `<span class="amenity">${item}</span>`).join("")}
+        <div class="room-card-visual" aria-hidden="true"></div>
+        <div class="room-card-content">
+          <span class="badge">${room.badge}</span>
+          <h3>${room.name}</h3>
+          <p class="muted">${room.description}</p>
+          <div class="price">$${room.price} <span class="price-unit">/ kecha</span></div>
+          <div class="muted room-capacity">Sig'im: ${room.capacity} kishi</div>
+          <div class="amenities">
+            ${room.amenities.map((item) => `<span class="amenity">${item}</span>`).join("")}
+          </div>
+          <button class="btn btn-block" type="button" data-room="${room.id}">Shu xonani tanlash</button>
         </div>
-        <button class="btn" type="button" data-room="${room.id}">Shu xonani tanlash</button>
       </article>
     `,
     )
