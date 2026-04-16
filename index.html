@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grand Luxe Hotel</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav">
+      <a class="brand" href="#top">Grand Luxe Hotel</a>
+      <div class="nav-links">
+        <a class="nav-link" href="#rooms">Xonalar</a>
+        <a class="nav-link" href="#services">Xizmatlar</a>
+        <a class="nav-link" href="#booking">Bron</a>
+      </div>
+      <div class="nav-actions">
+        <a class="btn-outline" href="./login.html">Admin login</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <span class="badge">Real-time bronlash tizimi</span>
+          <h1>Hashamat va qulaylik bir joyda</h1>
+          <p>
+            Grand Luxe Hotel uchun production tayyor bronlash sahifasi. Bronlar Firebase orqali
+            ishonchli saqlanadi, band sanalar tekshiriladi va admin panel orqali boshqariladi.
+          </p>
+          <div class="hero-stats">
+            <div class="stat-card">
+              <strong>24/7</strong>
+              <div class="muted">Qabulxona</div>
+            </div>
+            <div class="stat-card">
+              <strong>3 xil</strong>
+              <div class="muted">Xona toifasi</div>
+            </div>
+            <div class="stat-card">
+              <strong>Real-time</strong>
+              <div class="muted">Availability tekshiruvi</div>
+            </div>
+            <div class="stat-card">
+              <strong>Admin</strong>
+              <div class="muted">Tasdiqlash paneli</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-side">
+          <div class="booking-card">
+            <h2>Bron holati</h2>
+            <div id="firebase-status" class="status-strip status-warn">
+              Firebase ulanish tekshirilmoqda...
+            </div>
+            <p class="inline-note">
+              Bron yaratish callable Cloud Function orqali amalga oshadi. Agar saqlashda xatolik
+              bo'lsa, foydalanuvchiga ochiq xabar ko'rsatiladi.
+            </p>
+            <a class="btn" href="#booking">Hozir bron qiling</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="rooms" class="section">
+      <div class="section-inner">
+        <h2>Xonalarimiz</h2>
+        <p class="section-lead">
+          Narx, sig'im va xizmatlar statik UI emas, balki serverdagi katalogga mos model asosida ishlatiladi.
+        </p>
+        <div id="rooms-grid" class="room-grid"></div>
+      </div>
+    </section>
+
+    <section id="services" class="section">
+      <div class="section-inner">
+        <h2>Xizmatlar</h2>
+        <p class="section-lead">
+          Mehmonlar uchun premium xizmatlar majmuasi booking bilan bog'langan operatsion oqim bilan ishlaydi.
+        </p>
+        <div class="service-grid">
+          <div class="service-card"><h3>Airport transfer</h3><p class="muted">So'rov asosida premium kutib olish.</p></div>
+          <div class="service-card"><h3>Spa & Wellness</h3><p class="muted">Oldindan band qilinadigan dam olish xizmati.</p></div>
+          <div class="service-card"><h3>Fine Dining</h3><p class="muted">Maxsus ovqatlanish talablari bookingda saqlanadi.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="booking" class="section">
+      <div class="section-inner">
+        <h2>Onlayn bron</h2>
+        <p class="section-lead">
+          Forma ma'lumotlari server tomonda tekshiriladi: sanalar, sig'im, overlap booking va booking reference.
+        </p>
+        <div class="booking-card">
+          <div id="form-message" class="status-strip status-warn hidden"></div>
+          <form id="booking-form">
+            <div class="form-grid">
+              <div class="field">
+                <label for="guest-name">Ism va familiya</label>
+                <input id="guest-name" name="guestName" type="text" required>
+                <span class="field-error" data-error-for="guestName"></span>
+              </div>
+              <div class="field">
+                <label for="guest-email">Email</label>
+                <input id="guest-email" name="email" type="email" required>
+                <span class="field-error" data-error-for="email"></span>
+              </div>
+              <div class="field">
+                <label for="guest-phone">Telefon</label>
+                <input id="guest-phone" name="phone" type="tel" required>
+                <span class="field-error" data-error-for="phone"></span>
+              </div>
+              <div class="field">
+                <label for="room-id">Xona turi</label>
+                <select id="room-id" name="roomId" required></select>
+                <span class="field-error" data-error-for="roomId"></span>
+              </div>
+              <div class="field">
+                <label for="check-in">Kelish sanasi</label>
+                <input id="check-in" name="checkIn" type="date" required>
+                <span class="field-error" data-error-for="checkIn"></span>
+              </div>
+              <div class="field">
+                <label for="check-out">Ketish sanasi</label>
+                <input id="check-out" name="checkOut" type="date" required>
+                <span class="field-error" data-error-for="checkOut"></span>
+              </div>
+              <div class="field">
+                <label for="guest-count">Mehmonlar soni</label>
+                <select id="guest-count" name="guestCount" required>
+                  <option value="">Tanlang</option>
+                  <option value="1">1 kishi</option>
+                  <option value="2">2 kishi</option>
+                  <option value="3">3 kishi</option>
+                  <option value="4">4 kishi</option>
+                </select>
+                <span class="field-error" data-error-for="guestCount"></span>
+              </div>
+              <div class="field">
+                <label for="payment-method">To'lov usuli</label>
+                <select id="payment-method" name="paymentMethod" required>
+                  <option value="cash">Mehmonxonada to'lash</option>
+                  <option value="click">Click</option>
+                  <option value="payme">Payme</option>
+                </select>
+                <span class="field-error" data-error-for="paymentMethod"></span>
+              </div>
+              <div class="field">
+                <label for="lead-source">Qayerdan bildingiz?</label>
+                <select id="lead-source" name="source">
+                  <option value="">Tanlang</option>
+                  <option value="google">Google</option>
+                  <option value="instagram">Instagram</option>
+                  <option value="friends">Do'stlar orqali</option>
+                  <option value="other">Boshqa</option>
+                </select>
+              </div>
+              <div class="field field-full">
+                <label for="guest-notes">Maxsus talablar</label>
+                <textarea id="guest-notes" name="notes"></textarea>
+              </div>
+            </div>
+
+            <div id="booking-summary" class="booking-summary">
+              Xona va sana tanlang, umumiy narx shu yerda ko'rsatiladi.
+            </div>
+
+            <button id="submit-booking" class="btn" type="submit">Bronni tasdiqlash</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div>
+        <strong>Grand Luxe Hotel</strong>
+        <p class="muted">Toshkent uchun production-ready booking tajribasi.</p>
+      </div>
+      <div>
+        <strong>Aloqa</strong>
+        <p class="muted">+998 71 200 00 01<br>info@grandluxe.uz</p>
+      </div>
+    </div>
+  </footer>
+
+  <div id="success-modal" class="modal-backdrop">
+    <div class="modal-card">
+      <h3>Bron qabul qilindi</h3>
+      <p id="modal-text" class="muted"></p>
+      <button id="close-modal" class="btn" type="button">Yopish</button>
+    </div>
+  </div>
+
+  <script type="module" src="./main.js"></script>
+</body>
+</html>

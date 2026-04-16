@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body class="auth-shell">
+  <div class="auth-wrap">
+    <div class="auth-card">
+      <a class="muted" href="./index.html">← Bosh sahifaga qaytish</a>
+      <h1>Admin kirishi</h1>
+      <p class="muted">
+        Hardcoded parol o'rniga Firebase Authentication ishlatiladi. Admin rol `roles/admins/users/{uid}` orqali tekshiriladi.
+      </p>
+
+      <div id="login-message" class="status-strip status-warn hidden"></div>
+
+      <form id="login-form">
+        <div class="field">
+          <label for="login-email">Email</label>
+          <input id="login-email" type="email" required>
+        </div>
+        <div class="field">
+          <label for="login-password">Parol</label>
+          <input id="login-password" type="password" required>
+        </div>
+        <button id="login-submit" class="btn" type="submit">Kirish</button>
+      </form>
+    </div>
+  </div>
+
+  <script type="module" src="./login.js"></script>
+</body>
+</html>

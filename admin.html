@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body class="dashboard-shell">
+  <div class="dashboard-wrap">
+    <div class="dashboard-header">
+      <div>
+        <h1>Bronlar boshqaruvi</h1>
+        <p class="muted">Faqat admin foydalanuvchilar uchun real-time dashboard.</p>
+      </div>
+      <div class="action-stack">
+        <a class="btn-outline" href="./index.html">Saytga qaytish</a>
+        <button id="logout-button" class="btn-danger" type="button">Chiqish</button>
+      </div>
+    </div>
+
+    <div id="auth-warning" class="status-strip status-warn">Admin sessiya tekshirilmoqda...</div>
+
+    <div class="dashboard-grid">
+      <aside class="panel-card">
+        <h3>Filtrlar</h3>
+        <div class="field">
+          <label for="search-input">Qidiruv</label>
+          <input id="search-input" type="search" placeholder="Ism, email, telefon">
+        </div>
+
+        <div class="filter-stack" id="status-filters">
+          <button class="filter-chip active" data-filter="all" type="button">Barchasi</button>
+          <button class="filter-chip" data-filter="pending" type="button">Kutilmoqda</button>
+          <button class="filter-chip" data-filter="confirmed" type="button">Tasdiqlangan</button>
+          <button class="filter-chip" data-filter="cancelled" type="button">Bekor qilingan</button>
+        </div>
+
+        <h3>To'lov</h3>
+        <div class="filter-stack" id="payment-filters">
+          <button class="filter-chip active" data-payment="all" type="button">Barchasi</button>
+          <button class="filter-chip" data-payment="unpaid" type="button">To'lanmagan</button>
+          <button class="filter-chip" data-payment="paid" type="button">To'langan</button>
+          <button class="filter-chip" data-payment="refunded" type="button">Refund</button>
+        </div>
+      </aside>
+
+      <section>
+        <div class="stats-grid">
+          <div class="dashboard-card"><div class="muted">Jami bronlar</div><h2 id="stat-total">0</h2></div>
+          <div class="dashboard-card"><div class="muted">Kutilmoqda</div><h2 id="stat-pending">0</h2></div>
+          <div class="dashboard-card"><div class="muted">Tushum</div><h2 id="stat-revenue">$0</h2></div>
+        </div>
+
+        <div class="panel-card" style="margin-top:20px;">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Bron</th>
+                  <th>Mehmon</th>
+                  <th>Sanalar</th>
+                  <th>Status</th>
+                  <th>To'lov</th>
+                  <th>Amallar</th>
+                </tr>
+              </thead>
+              <tbody id="bookings-body">
+                <tr><td colspan="6" class="empty-state">Yuklanmoqda...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script type="module" src="./admin.js"></script>
+</body>
+</html>
