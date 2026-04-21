@@ -1,52 +1,52 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600&display=swap");
 
-/* Sokin palitra — oq (#fff) ishlatilmaydi, faqat issiq kulrang-bej */
+/* Screenshot uslubi: och fon + ko'k aksent + ko'k-binafsha-sariq gradient */
 :root {
-  --canvas: #cfc9be;
-  --surface: #c4beb3;
-  --surface-raised: #d8d2c7;
-  --surface-muted: #bab4a9;
+  --canvas: #f3f4f6;
+  --surface: #ffffff;
+  --surface-raised: #ffffff;
+  --surface-muted: #eef2f7;
 
-  --text: #3a3a37;
-  --text-strong: #2c2c29;
-  --muted: #73736e;
+  --text: #334155;
+  --text-strong: #1e293b;
+  --muted: #64748b;
 
-  --line: rgba(45, 44, 40, 0.09);
-  --line-strong: rgba(45, 44, 40, 0.16);
-  --focus-ring: rgba(45, 44, 40, 0.12);
+  --line: rgba(148, 163, 184, 0.24);
+  --line-strong: rgba(100, 116, 139, 0.36);
+  --focus-ring: rgba(37, 99, 235, 0.18);
 
   /* Tugma va urg‘u: to‘q kulrang, rangli “chaqnash” yo‘q */
-  --btn: #45443f;
-  --btn-hover: #3a3935;
-  --ink: #3f3e3a;
-  --ink-deep: #32312e;
+  --btn: #0d6efd;
+  --btn-hover: #0b5ed7;
+  --ink: #1d4ed8;
+  --ink-deep: #1e40af;
 
-  --text-on-dark: #f2f1ee;
-  --muted-on-dark: rgba(242, 241, 238, 0.65);
+  --text-on-dark: #f8fafc;
+  --muted-on-dark: rgba(248, 250, 252, 0.72);
   --line-dark: rgba(255, 255, 255, 0.08);
 
   /* Mavjud kod bilan moslashish */
   --bg: var(--ink-deep);
   --card: var(--canvas);
-  --card-warm: #c8c2b6;
+  --card-warm: #e8eef8;
   --accent: var(--btn);
   --accent-hover: var(--btn-hover);
-  --accent-light: #6a6964;
-  --accent-soft: rgba(69, 68, 63, 0.08);
+  --accent-light: #3b82f6;
+  --accent-soft: rgba(59, 130, 246, 0.12);
   --accent-ring: var(--focus-ring);
   --brand: var(--btn);
-  --brand-bright: #8a8984;
+  --brand-bright: #60a5fa;
   --brand-dark: var(--btn-hover);
 
-  --success: #5a6b5a;
-  --warning: #8a7d6a;
-  --danger: #8b5a52;
+  --success: #16a34a;
+  --warning: #f59e0b;
+  --danger: #dc2626;
 
   --radius-lg: 12px;
   --radius-md: 8px;
   --radius-sm: 6px;
   --shadow-soft: 0 1px 3px rgba(0, 0, 0, 0.04);
-  --shadow-card: 0 8px 28px rgba(0, 0, 0, 0.05);
+  --shadow-card: 0 10px 32px rgba(30, 64, 175, 0.08);
   --font-sans: "DM Sans", system-ui, sans-serif;
   --font-display: "Newsreader", Georgia, serif;
 
@@ -115,7 +115,7 @@ textarea {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(207, 201, 190, 0.92);
+  background: rgba(255, 255, 255, 0.95);
   color: var(--text);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--line);
@@ -146,8 +146,8 @@ textarea {
 .brand-mark {
   width: 8px;
   height: 8px;
-  border-radius: 1px;
-  background: var(--text-strong);
+  border-radius: 999px;
+  background: var(--btn);
   opacity: 0.85;
 }
 
@@ -201,19 +201,19 @@ textarea {
 .btn:focus-visible,
 .btn-outline:focus-visible,
 .btn-danger:focus-visible {
-  outline: 1px solid var(--text-strong);
+  outline: 2px solid var(--accent-light);
   outline-offset: 3px;
 }
 
 .btn {
   background: var(--btn);
   color: var(--text-on-dark);
-  box-shadow: none;
+  box-shadow: 0 6px 16px rgba(13, 110, 253, 0.28);
 }
 
 .btn:hover {
   background: var(--btn-hover);
-  transform: none;
+  transform: translateY(-1px);
   filter: none;
 }
 
@@ -257,7 +257,7 @@ textarea {
 .hero-bg {
   position: absolute;
   inset: 0;
-  background: linear-gradient(175deg, #c4bfb4 0%, var(--canvas) 48%, #c7c1b6 100%);
+  background: linear-gradient(105deg, #dbeafe 0%, #e9d5ff 52%, #fee2e2 100%);
 }
 
 .hero-bg::after {
@@ -421,11 +421,11 @@ textarea {
 }
 
 .section-alt {
-  background: linear-gradient(180deg, var(--card-warm) 0%, var(--canvas) 100%);
+  background: linear-gradient(180deg, #f8fafc 0%, var(--canvas) 100%);
 }
 
 .section-booking {
-  background: linear-gradient(180deg, var(--surface-muted) 0%, var(--canvas) 50%);
+  background: linear-gradient(180deg, #dbeafe 0%, #c4b5fd 48%, #f97316 100%);
 }
 
 .section-inner {
@@ -495,20 +495,20 @@ textarea {
 
 .room-card-visual {
   height: 156px;
-  background: linear-gradient(160deg, #b0afa8 0%, #8e8d88 100%);
+  background: linear-gradient(160deg, #60a5fa 0%, #818cf8 100%);
   position: relative;
 }
 
 .room-card:nth-child(1) .room-card-visual {
-  background: linear-gradient(160deg, #c4c3bd 0%, #9e9d97 100%);
+  background: linear-gradient(160deg, #3b82f6 0%, #6366f1 100%);
 }
 
 .room-card:nth-child(2) .room-card-visual {
-  background: linear-gradient(160deg, #a3a29c 0%, #85847e 100%);
+  background: linear-gradient(160deg, #6366f1 0%, #a855f7 100%);
 }
 
 .room-card:nth-child(3) .room-card-visual {
-  background: linear-gradient(160deg, #95948e 0%, #6f6e6a 100%);
+  background: linear-gradient(160deg, #a855f7 0%, #f97316 100%);
 }
 
 .room-card-visual::after {
@@ -609,8 +609,8 @@ textarea {
   width: 36px;
   height: 36px;
   border-radius: var(--radius-sm);
-  background: rgba(45, 44, 40, 0.06);
-  color: var(--text-strong);
+  background: rgba(59, 130, 246, 0.12);
+  color: var(--btn);
   font-size: 0.95rem;
   margin: 0 auto 14px;
   font-weight: 400;
@@ -763,7 +763,7 @@ textarea {
 }
 
 .site-footer {
-  background: var(--ink-deep);
+  background: #0f172a;
   color: var(--text-on-dark);
   padding-top: 44px;
   padding-bottom: 44px;
