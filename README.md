@@ -1,75 +1,54 @@
 # Grand Luxe Hotel Booking
 
-Bu loyiha GitHub Pages uchun statik frontend va Firebase backend kombinatsiyasidan iborat.
+Statik frontend (GitHub Pages yoki boshqa host) va Firebase (Firestore + ixtiyoriy Cloud Functions).
 
-## Nimalar ishlaydi
+## Ketma-ket deploy (checklist)
 
-- Public booking forma
-- Firestore transaction orqali booking validation
-- Availability va overlap bloklash (`bookingLocks`)
-- Booking reference (`GLH-000001` ko'rinishida)
-- Firebase Authentication orqali admin login
-- Admin dashboard: booking status, payment status, delete
-- Firestore security rules
+1. **Firestore** (har doim): loyiha ildizida  
+   `firebase deploy --only firestore:rules,firestore:indexes`
 
-## Asosiy fayllar
+2. **Cloud Functions** (ixtiyoriy): faqat **Blaze** rejimida. Spark’da deploy qilinmaydi.  
+   Loyihada `createBooking`, `updateBookingStatus`, `updatePaymentStatus`, `deleteBooking` bor; hozirgi veb-interfeys asosan **client-side** `runTransaction` bilan bron yaratadi. Funksiyalarni ishlatmoqchi bo‘lsangiz, konsolda rejimni yangilab:  
+   `cd functions && npm ci && cd .. && firebase deploy --only functions`
 
-- `index.html` - public booking sahifasi
-- `main.js` - booking forma oqimi
-- `login.html` va `login.js` - admin login
-- `admin.html` va `admin.js` - admin dashboard
-- `firebase-client.js` - umumiy Firebase init
-- `firestore.rules` - Firestore security qoidalari
+3. **Sayt (GitHub Pages)**  
+   - Repo: **Settings → Pages → Build and deployment → Source: GitHub Actions**  
+   - `main` ga push qilganda `.github/workflows/pages.yml` saytni avtomatik chiqaradi (statik fayllar `functions` va `.github` siz).
 
 ## Firebase sozlash
 
-1. Firebase project yarating.
-2. Authentication ichida `Email/Password` ni yoqing.
-3. Firestore Database yarating.
-4. `firebase-client.js` ichidagi config qiymatlarini o'zingizniki bilan yangilang.
-5. Firestore rules va indexes deploy qiling:
+1. Firebase loyiha, **Authentication** → Email/Password.  
+2. **Firestore** yoqing.  
+3. `firebase-client.js` dagi config o‘z loyihangizga mos.  
+4. Birinchi admin: `roles/admins/users/<UID>` hujjati `enabled: true`.
 
-```bash
-firebase deploy --only firestore:rules,firestore:indexes
-```
+## Asosiy fayllar
 
-## Birinchi admin foydalanuvchini yaratish
+| Fayl | Vazifa |
+|------|--------|
+| `index.html`, `main.js` | Bron formasi, galereya, SEO |
+| `hotels.html`, `hotels.js` | Xonalar |
+| `account.html`, `account.js` | Ro‘yxatdan o‘tish / kirish |
+| `my-bookings.html`, `my-bookings.js` | Foydalanuvchi bronlari |
+| `login.html`, `login.js` | Admin kirish |
+| `admin.html`, `admin.js` | Admin panel, CSV, site sozlamalari |
+| `firebase-client.js` | Firebase init, so‘rovlar |
+| `layout.js`, `i18n.js` | Nav, til |
+| `site-settings.js` | `siteSettings/public` o‘qish/yozish |
+| `room-catalog.js` | Xona katalogi |
+| `style.css` | Uslub |
+| `robots.txt`, `sitemap.xml` | SEO |
+| `firestore.rules`, `firestore.indexes.json` | Xavfsizlik va indekslar |
+| `functions/index.js` | Callable API (Blaze) |
 
-1. Firebase Authentication orqali admin user yarating.
-2. Firestore ichida quyidagi hujjatni qo'shing:
+## Indekslar
 
-`roles/admins/users/<ADMIN_UID>`
+`bookings` uchun Firestore’da ikkita composite indeks kutiladi:
 
-Hujjat body:
-
-```json
-{
-  "enabled": true,
-  "email": "admin@example.com",
-  "createdAt": "manual"
-}
-```
-
-Shundan keyin admin foydalanuvchi `login.html` orqali tizimga kira oladi.
-
-## GitHub Pages deploy
-
-Frontend fayllari statik:
-
-- `index.html`
-- `admin.html`
-- `login.html`
-- `style.css`
-- `main.js`
-- `admin.js`
-- `login.js`
-- `firebase-client.js`
-- `room-catalog.js`
-
-Ularni GitHub repo root qismida saqlang va GitHub Pages ni `main` branch root papkaga yoqing.
+- `userId` + `createdAt` — “Mening bronlarim”
+- `roomId` + `isActive` — Cloud Function’dagi bandlik tekshiruvi (client transaction bilan ham mos)
 
 ## Eslatma
 
-- Spark rejim uchun bookinglar client transaction orqali yoziladi.
-- `bookingLocks` kolleksiyasi sanalar overlap bo'lishini bloklaydi.
-- Admin bo'lmagan foydalanuvchi bookinglar kolleksiyasini o'qiy olmaydi.
+- `bookingLocks` sanalar ustidan ustma-ust tushishni bloklaydi.  
+- Admin bo‘lmagan foydalanuvchi faqat o‘z `userId` si bilan bronlarni o‘qiy oladi (qoidalarga qarang).
