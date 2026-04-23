@@ -2,9 +2,11 @@
 
 Statik frontend (**Firebase Hosting** — Spark’da ham bepul) va Firebase (Firestore + ixtiyoriy Cloud Functions).
 
-## Jonli sayt
+## Rasmiy domen
 
-- **Firebase Hosting:** [https://grand-hotel-sanjarbek.web.app](https://grand-hotel-sanjarbek.web.app)
+Barcha SEO va havolalar faqat **https://grand-hotel-sanjarbek.web.app** uchun. GitHub Pages ishlatilmaydi (duplicate domen bo‘lmasin). Agar repoda avval Pages yoqilgan bo‘lsa: **GitHub → Settings → Pages →** saytni **o‘chiring** yoki “None” qiling.
+
+*(Firebase loyiha bilan birga `*.firebaseapp.com` ham ochilishi mumkin — qidiruv va ulashish uchun asosiy manzil `web.app`.)*
 
 ## Ketma-ket deploy (checklist)
 
@@ -14,15 +16,11 @@ Statik frontend (**Firebase Hosting** — Spark’da ham bepul) va Firebase (Fir
 2. **Firebase Hosting** (asosiy sayt): loyiha ildizida  
    `firebase deploy --only hosting`  
    yoki `npm run deploy:hosting` / `npm run deploy:web` (Firestore + Hosting birga).  
-   Konfiguratsiya `firebase.json` ichidagi `hosting` bo‘limida; `functions`, `.github` va maxfiy fayllar yuklanmaydi. Canonical URL va `sitemap.xml` **web.app** domeni bilan mos.
+   Konfiguratsiya `firebase.json` ichidagi `hosting` bo‘limida; `functions` va maxfiy fayllar yuklanmaydi. Canonical URL va `sitemap.xml` faqat **web.app**.
 
 3. **Cloud Functions** (ixtiyoriy): faqat **Blaze** rejimida. Spark’da deploy qilinmaydi.  
    Loyihada `createBooking`, `updateBookingStatus`, `updatePaymentStatus`, `deleteBooking` bor; hozirgi veb-interfeys asosan **client-side** `runTransaction` bilan bron yaratadi. Funksiyalarni ishlatmoqchi bo‘lsangiz, konsolda rejimni yangilab:  
    `cd functions && npm ci && cd .. && firebase deploy --only functions`
-
-4. **Sayt (GitHub Pages, ixtiyoriy)**  
-   - Repo: **Settings → Pages → Build and deployment → Source: GitHub Actions**  
-   - `main` ga push qilganda `.github/workflows/pages.yml` saytni avtomatik chiqaradi (statik fayllar `functions` va `.github` siz).
 
 ## Firebase sozlash
 
