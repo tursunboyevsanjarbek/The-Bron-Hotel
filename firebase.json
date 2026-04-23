@@ -5,5 +5,21 @@
   },
   "functions": {
     "source": "functions"
+  },
+  "hosting": {
+    "public": ".",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**",
+      "functions/**",
+      ".github/**",
+      "README.md",
+      "firestore.rules",
+      "firestore.indexes.json",
+      ".firebaserc",
+      ".gitignore",
+      ".git/**"
+    ]
   }
 }

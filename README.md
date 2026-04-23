@@ -1,17 +1,25 @@
 # Grand Luxe Hotel Booking
 
-Statik frontend (GitHub Pages yoki boshqa host) va Firebase (Firestore + ixtiyoriy Cloud Functions).
+Statik frontend (**Firebase Hosting** — Spark’da ham bepul) va Firebase (Firestore + ixtiyoriy Cloud Functions).
+
+## Jonli sayt
+
+- **Firebase Hosting:** [https://grand-hotel-sanjarbek.web.app](https://grand-hotel-sanjarbek.web.app)
 
 ## Ketma-ket deploy (checklist)
 
 1. **Firestore** (har doim): loyiha ildizida  
    `firebase deploy --only firestore:rules,firestore:indexes`
 
-2. **Cloud Functions** (ixtiyoriy): faqat **Blaze** rejimida. Spark’da deploy qilinmaydi.  
+2. **Firebase Hosting** (asosiy sayt): loyiha ildizida  
+   `firebase deploy --only hosting`  
+   Konfiguratsiya `firebase.json` ichidagi `hosting` bo‘limida; `functions`, `.github` va maxfiy fayllar yuklanmaydi.
+
+3. **Cloud Functions** (ixtiyoriy): faqat **Blaze** rejimida. Spark’da deploy qilinmaydi.  
    Loyihada `createBooking`, `updateBookingStatus`, `updatePaymentStatus`, `deleteBooking` bor; hozirgi veb-interfeys asosan **client-side** `runTransaction` bilan bron yaratadi. Funksiyalarni ishlatmoqchi bo‘lsangiz, konsolda rejimni yangilab:  
    `cd functions && npm ci && cd .. && firebase deploy --only functions`
 
-3. **Sayt (GitHub Pages)**  
+4. **Sayt (GitHub Pages, ixtiyoriy)**  
    - Repo: **Settings → Pages → Build and deployment → Source: GitHub Actions**  
    - `main` ga push qilganda `.github/workflows/pages.yml` saytni avtomatik chiqaradi (statik fayllar `functions` va `.github` siz).
 
