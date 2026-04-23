@@ -1,0 +1,10 @@
+{
+  "name": "grand-luxe-hotel",
+  "private": true,
+  "description": "Static hotel site + Firebase. Scripts wrap firebase deploy.",
+  "scripts": {
+    "deploy:firestore": "firebase deploy --only firestore:rules,firestore:indexes",
+    "deploy:hosting": "firebase deploy --only hosting",
+    "deploy:web": "firebase deploy --only firestore:rules,firestore:indexes,hosting"
+  }
+}

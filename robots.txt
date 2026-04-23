@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://tursunboyevsanjarbek.github.io/The-Bron-Hotel/sitemap.xml
+Sitemap: https://grand-hotel-sanjarbek.web.app/sitemap.xml

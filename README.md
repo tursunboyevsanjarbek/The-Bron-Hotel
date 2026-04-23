@@ -13,7 +13,8 @@ Statik frontend (**Firebase Hosting** — Spark’da ham bepul) va Firebase (Fir
 
 2. **Firebase Hosting** (asosiy sayt): loyiha ildizida  
    `firebase deploy --only hosting`  
-   Konfiguratsiya `firebase.json` ichidagi `hosting` bo‘limida; `functions`, `.github` va maxfiy fayllar yuklanmaydi.
+   yoki `npm run deploy:hosting` / `npm run deploy:web` (Firestore + Hosting birga).  
+   Konfiguratsiya `firebase.json` ichidagi `hosting` bo‘limida; `functions`, `.github` va maxfiy fayllar yuklanmaydi. Canonical URL va `sitemap.xml` **web.app** domeni bilan mos.
 
 3. **Cloud Functions** (ixtiyoriy): faqat **Blaze** rejimida. Spark’da deploy qilinmaydi.  
    Loyihada `createBooking`, `updateBookingStatus`, `updatePaymentStatus`, `deleteBooking` bor; hozirgi veb-interfeys asosan **client-side** `runTransaction` bilan bron yaratadi. Funksiyalarni ishlatmoqchi bo‘lsangiz, konsolda rejimni yangilab:  
