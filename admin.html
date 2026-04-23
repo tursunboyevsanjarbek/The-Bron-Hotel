@@ -4,9 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Dashboard</title>
-  <link rel="stylesheet" href="./style.css?v=20260418a">
+  <link rel="stylesheet" href="./style.css?v=20260219a">
 </head>
-<body class="dashboard-shell">
+<body class="dashboard-shell" data-page="admin">
+  <header class="site-header" id="site-header"></header>
   <div class="dashboard-wrap">
     <div class="dashboard-header">
       <div>
@@ -14,6 +15,7 @@
         <p class="muted">Faqat admin foydalanuvchilar uchun real-time dashboard.</p>
       </div>
       <div class="action-stack">
+        <button id="export-csv" class="btn-outline" type="button">CSV eksport</button>
         <a class="btn-outline" href="./index.html">Saytga qaytish</a>
         <button id="logout-button" class="btn-danger" type="button">Chiqish</button>
       </div>
@@ -73,8 +75,33 @@
         </div>
       </section>
     </div>
+
+    <div class="panel-card" style="margin-top: 24px;">
+      <h3>Bosh sahifa matnlari</h3>
+      <p class="muted">Firestore: <code>siteSettings/public</code> — saytga darhol aks etadi.</p>
+      <form id="site-settings-form" class="stack-form" style="max-width: 640px;">
+        <div class="field">
+          <label for="set-hero-title">Hero sarlavha</label>
+          <input id="set-hero-title" type="text" autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="set-hero-lead">Hero matn</label>
+          <textarea id="set-hero-lead" rows="3"></textarea>
+        </div>
+        <div class="field">
+          <label for="set-cta-title">CTA sarlavha</label>
+          <input id="set-cta-title" type="text" autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="set-cta-lead">CTA matn</label>
+          <textarea id="set-cta-lead" rows="2"></textarea>
+        </div>
+        <button class="btn" type="submit">Saqlash</button>
+        <p id="site-settings-msg" class="inline-note hidden"></p>
+      </form>
+    </div>
   </div>
 
-  <script type="module" src="./admin.js?v=20260418a"></script>
+  <script type="module" src="./admin.js?v=20260219a"></script>
 </body>
 </html>

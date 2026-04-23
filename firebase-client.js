@@ -11,13 +11,16 @@ import {
   deleteDoc,
   doc,
   getDoc,
+  getDocs,
   getFirestore,
   onSnapshot,
   orderBy,
   query,
   runTransaction,
   serverTimestamp,
+  setDoc,
   updateDoc,
+  where,
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -47,19 +50,33 @@ function bookingsQuery() {
   return query(collection(db, "bookings"), orderBy("createdAt", "desc"));
 }
 
+function myBookingsQuery(uid) {
+  return query(
+    collection(db, "bookings"),
+    where("userId", "==", uid),
+    orderBy("createdAt", "desc"),
+  );
+}
+
 export {
   auth,
   addDoc,
   bookingsQuery,
+  myBookingsQuery,
   db,
   deleteDoc,
   doc,
   getAdminRole,
   getDoc,
+  getDocs,
   onAuthStateChanged,
   onSnapshot,
   runTransaction,
   serverTimestamp,
+  setDoc,
   updateDoc,
   collection,
+  query,
+  where,
+  orderBy,
 };

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grand Luxe Hotel — Mehmon kabineti</title>
+  <meta name="description" content="Grand Luxe Hotel mehmon akkaunti: kirish va ro‘yxatdan o‘tish.">
+  <link rel="stylesheet" href="./style.css?v=20260219a">
+</head>
+<body class="auth-shell" data-page="account">
+  <header class="site-header" id="site-header"></header>
+
+  <div class="auth-wrap">
+    <div class="auth-card auth-card-wide">
+      <a class="muted" href="./index.html">← Bosh sahifa</a>
+      <h1 data-i18n="account.title">Mehmon kabineti</h1>
+      <p class="muted" data-i18n="account.lead">Bronlaringizni bog‘lash uchun akkaunt yarating yoki kiring.</p>
+      <p class="inline-note" data-i18n="account.adminHint">Admin bo‘lsangiz, admin panelga yo‘naltirilasiz.</p>
+
+      <div id="account-message" class="status-strip status-warn hidden"></div>
+
+      <div id="account-guest-forms" class="account-grid">
+        <div>
+          <h2 class="h3-like" data-i18n="account.register">Ro‘yxatdan o‘tish</h2>
+          <form id="register-form" class="stack-form">
+            <div class="field">
+              <label for="reg-email" data-i18n="account.email">Email</label>
+              <input id="reg-email" type="email" autocomplete="email" required>
+            </div>
+            <div class="field">
+              <label for="reg-password" data-i18n="account.password">Parol</label>
+              <input id="reg-password" type="password" autocomplete="new-password" minlength="6" required>
+            </div>
+            <button class="btn" type="submit" data-i18n="account.register">Ro‘yxatdan o‘tish</button>
+          </form>
+        </div>
+        <div>
+          <h2 class="h3-like" data-i18n="account.login">Kirish</h2>
+          <form id="signin-form" class="stack-form">
+            <div class="field">
+              <label for="sign-email" data-i18n="account.email">Email</label>
+              <input id="sign-email" type="email" autocomplete="email" required>
+            </div>
+            <div class="field">
+              <label for="sign-password" data-i18n="account.password">Parol</label>
+              <input id="sign-password" type="password" autocomplete="current-password" required>
+            </div>
+            <button class="btn" type="submit" data-i18n="account.login">Kirish</button>
+          </form>
+        </div>
+      </div>
+
+      <div id="account-session" class="hidden">
+        <p><strong data-i18n="account.session">Sessiya</strong>: <span id="account-email"></span></p>
+        <div class="action-stack" style="margin-top:12px;">
+          <a class="btn" href="./my-bookings.html" data-i18n="nav.bookings">Mening bronlarim</a>
+          <button id="account-logout" class="btn-outline" type="button" data-i18n="account.logout">Chiqish</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="./account.js?v=20260219a"></script>
+</body>
+</html>

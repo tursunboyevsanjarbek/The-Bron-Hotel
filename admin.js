@@ -8,13 +8,22 @@ import {
   deleteDoc,
   doc,
   db,
+  getDoc,
+  setDoc,
+  serverTimestamp,
 } from "./firebase-client.js";
 import { signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { initLayout } from "./layout.js";
+
+initLayout();
 
 const authWarning = document.getElementById("auth-warning");
 const tbody = document.getElementById("bookings-body");
 const searchInput = document.getElementById("search-input");
 const logoutButton = document.getElementById("logout-button");
+const exportButton = document.getElementById("export-csv");
+const siteSettingsForm = document.getElementById("site-settings-form");
+const siteSettingsMsg = document.getElementById("site-settings-msg");
 
 let allBookings = [];
 let statusFilter = "all";
@@ -133,6 +142,8 @@ async function guardAdmin(user) {
 
   showAuthMessage("status-ok", `Admin sessiya faol: ${user.email}`);
 
+  await loadSiteSettingsForm();
+
   onSnapshot(bookingsQuery(), (snapshot) => {
     allBookings = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
     applyFilters();
@@ -205,5 +216,84 @@ logoutButton.addEventListener("click", async () => {
   await signOut(auth);
   window.location.href = "./login.html";
 });
+
+function exportBookingsCsv() {
+  const headers = [
+    "bookingRef",
+    "guestName",
+    "email",
+    "phone",
+    "roomName",
+    "roomId",
+    "checkIn",
+    "checkOut",
+    "status",
+    "paymentStatus",
+    "totalPrice",
+    "nights",
+    "guestCount",
+    "paymentMethod",
+    "createdAt",
+  ];
+  const esc = (v) => {
+    const s = v == null ? "" : typeof v === "object" && v.toDate ? v.toDate().toISOString() : String(v);
+    return `"${s.replace(/"/g, '""')}"`;
+  };
+  const lines = [
+    headers.join(","),
+    ...allBookings.map((r) => headers.map((h) => esc(r[h])).join(",")),
+  ];
+  const blob = new Blob(["\uFEFF" + lines.join("\n")], { type: "text/csv;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `bookings-${new Date().toISOString().slice(0, 10)}.csv`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+async function loadSiteSettingsForm() {
+  if (!siteSettingsForm) return;
+  try {
+    const snap = await getDoc(doc(db, "siteSettings", "public"));
+    if (!snap.exists()) return;
+    const d = snap.data();
+    document.getElementById("set-hero-title").value = d.heroTitle || "";
+    document.getElementById("set-hero-lead").value = d.heroLead || "";
+    document.getElementById("set-cta-title").value = d.ctaTitle || "";
+    document.getElementById("set-cta-lead").value = d.ctaLead || "";
+  } catch {
+    /* */
+  }
+}
+
+if (exportButton) {
+  exportButton.addEventListener("click", () => exportBookingsCsv());
+}
+
+if (siteSettingsForm) {
+  siteSettingsForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    siteSettingsMsg.classList.add("hidden");
+    try {
+      await setDoc(
+        doc(db, "siteSettings", "public"),
+        {
+          heroTitle: document.getElementById("set-hero-title").value.trim(),
+          heroLead: document.getElementById("set-hero-lead").value.trim(),
+          ctaTitle: document.getElementById("set-cta-title").value.trim(),
+          ctaLead: document.getElementById("set-cta-lead").value.trim(),
+          updatedAt: serverTimestamp(),
+        },
+        { merge: true },
+      );
+      siteSettingsMsg.textContent = "Saqlandi.";
+      siteSettingsMsg.classList.remove("hidden");
+    } catch (err) {
+      siteSettingsMsg.textContent = err.message || "Saqlashda xato.";
+      siteSettingsMsg.classList.remove("hidden");
+    }
+  });
+}
 
 onAuthStateChanged(auth, guardAdmin);

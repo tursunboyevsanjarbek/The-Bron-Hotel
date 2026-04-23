@@ -3,6 +3,9 @@ import {
   getAdminRole,
   onAuthStateChanged,
 } from "./firebase-client.js";
+import { initLayout } from "./layout.js";
+
+initLayout();
 import {
   signInWithEmailAndPassword,
   signOut,

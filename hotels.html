@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grand Luxe Hotel — Mehmonxonalar</title>
+  <meta name="description" content="Grand Luxe Hotel xona turlari: narx va qulayliklar bo‘yicha qidiruv.">
+  <link rel="stylesheet" href="./style.css?v=20260219a">
+</head>
+<body data-page="hotels">
+  <header class="site-header" id="site-header"></header>
+
+  <main class="page-main">
+    <section class="section section-hotels-hero">
+      <div class="section-inner">
+        <header class="section-head section-head-left">
+          <p class="eyebrow">Hotels</p>
+          <h1 data-i18n="hotels.title">Mehmonxonalar</h1>
+          <p class="section-lead" data-i18n="hotels.lead">Xona turlarini narx va qulaylik bo‘yicha qidiring.</p>
+        </header>
+        <div class="hotels-toolbar">
+          <div class="field field-grow">
+            <label for="hotel-search" class="sr-only" data-i18n="hotels.searchPh">Qidiruv</label>
+            <input id="hotel-search" type="search" data-i18n-placeholder="hotels.searchPh" placeholder="Qidiruv...">
+          </div>
+          <div class="field">
+            <label for="price-min" data-i18n="hotels.min">Min</label>
+            <input id="price-min" type="number" min="0" value="0" step="1">
+          </div>
+          <div class="field">
+            <label for="price-max" data-i18n="hotels.max">Max</label>
+            <input id="price-max" type="number" min="0" value="10000" step="10">
+          </div>
+          <button id="hotel-reset" class="btn-outline" type="button" data-i18n="hotels.reset">Tozalash</button>
+        </div>
+        <div id="hotels-grid" class="room-grid"></div>
+        <p id="hotels-empty" class="empty-state hidden" data-i18n="hotels.empty">Topilmadi</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <strong>Grand Luxe Hotel</strong>
+        <p class="muted" data-i18n="footer.tagline">Toshkent uchun zamonaviy bronlash tajribasi.</p>
+      </div>
+      <div>
+        <strong data-i18n="footer.contact">Aloqa</strong>
+        <p class="muted">+998 71 200 00 01<br>info@grandluxe.uz</p>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="./hotels.js?v=20260219a"></script>
+</body>
+</html>

@@ -3,23 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Grand Luxe Hotel</title>
-  <link rel="stylesheet" href="./style.css?v=20260418a">
+  <title>Grand Luxe Hotel — Hashamatli mehmonxona va onlayn bron</title>
+  <meta name="description" content="Grand Luxe Hotel: Toshkentda zamonaviy xonalar, real-time mavjudlik va xavfsiz Firebase bronlash.">
+  <link rel="canonical" href="https://tursunboyevsanjarbek.github.io/The-Bron-Hotel/">
+  <meta property="og:title" content="Grand Luxe Hotel">
+  <meta property="og:description" content="Hashamatli mehmonxona va onlayn bronlash tizimi.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tursunboyevsanjarbek.github.io/The-Bron-Hotel/">
+  <link rel="stylesheet" href="./style.css?v=20260219a">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Hotel",
+    "name": "Grand Luxe Hotel",
+    "description": "Luxury hotel booking in Tashkent with online reservations.",
+    "url": "https://tursunboyevsanjarbek.github.io/The-Bron-Hotel/",
+    "telephone": "+998-71-200-00-01",
+    "email": "info@grandluxe.uz",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Tashkent",
+      "addressCountry": "UZ"
+    }
+  }
+  </script>
 </head>
-<body>
-  <header class="site-header">
-    <nav class="nav">
-      <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"></span> Grand Luxe Hotel</a>
-      <div class="nav-links">
-        <a class="nav-link" href="#rooms">Xonalar</a>
-        <a class="nav-link" href="#services">Xizmatlar</a>
-        <a class="nav-link" href="#booking">Bron</a>
-      </div>
-      <div class="nav-actions">
-        <a class="btn-outline" href="./login.html">Admin</a>
-      </div>
-    </nav>
-  </header>
+<body data-page="index">
+  <header class="site-header" id="site-header"></header>
 
   <main id="top">
     <section class="hero">
@@ -27,11 +37,15 @@
       <div class="hero-inner">
         <div class="hero-copy">
           <span class="badge">Real-time bronlash</span>
-          <h1>Hashamat va qulaylik bir joyda</h1>
-          <p class="hero-lead">
+          <h1 id="hero-title">Hashamat va qulaylik bir joyda</h1>
+          <p class="hero-lead" id="hero-lead">
             Grand Luxe Hotel uchun zamonaviy bronlash tajribasi. Bronlar Firebase orqali xavfsiz saqlanadi,
             band sanalar tekshiriladi va admin panel orqali boshqariladi.
           </p>
+          <div class="hero-cta-row">
+            <a class="btn" href="./hotels.html" data-i18n="hero.cta.search">Qidirish</a>
+            <a class="btn btn-secondary" href="#booking" data-i18n="hero.cta.book">Bron qilish</a>
+          </div>
           <div class="hero-stats">
             <div class="stat-card">
               <strong>24/7</strong>
@@ -107,6 +121,50 @@
             <p class="muted">Maxsus ovqatlanish talablari saqlanadi.</p>
           </div>
         </div>
+      </div>
+    </section>
+
+    <section id="gallery" class="section section-alt">
+      <div class="section-inner">
+        <header class="section-head">
+          <p class="eyebrow">Gallery</p>
+          <h2 data-i18n="gallery.title">Galereya</h2>
+          <p class="section-lead" data-i18n="gallery.lead">Mehmonxona muhitidan lavhalar.</p>
+        </header>
+        <div class="gallery-grid" aria-label="Galereya">
+          <div class="gallery-item" style="--g:1"></div>
+          <div class="gallery-item" style="--g:2"></div>
+          <div class="gallery-item" style="--g:3"></div>
+          <div class="gallery-item" style="--g:4"></div>
+          <div class="gallery-item" style="--g:5"></div>
+          <div class="gallery-item" style="--g:6"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="location" class="section">
+      <div class="section-inner">
+        <header class="section-head">
+          <p class="eyebrow">Map</p>
+          <h2 data-i18n="map.title">Joylashuv</h2>
+          <p class="section-lead" data-i18n="map.lead">Toshkent markaziga yaqin qulay manzil.</p>
+        </header>
+        <div class="map-embed">
+          <iframe
+            title="Grand Luxe Hotel joylashuvi"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            src="https://maps.google.com/maps?q=Tashkent&z=13&output=embed">
+          </iframe>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cta-banner" aria-label="Call to action">
+      <div class="cta-banner-inner">
+        <h2 id="cta-title" data-i18n="cta.title">Mukammal dam olishni boshlang</h2>
+        <p id="cta-lead" data-i18n="cta.lead">Hashamatli xonalar va ishonchli onlayn bron.</p>
+        <a class="btn btn-cta-light" href="./hotels.html" data-i18n="hero.cta.search">Qidirish</a>
       </div>
     </section>
 
@@ -206,10 +264,10 @@
     <div class="footer-inner">
       <div class="footer-brand">
         <strong>Grand Luxe Hotel</strong>
-        <p class="muted">Toshkent uchun zamonaviy bronlash tajribasi.</p>
+        <p class="muted" data-i18n="footer.tagline">Toshkent uchun zamonaviy bronlash tajribasi.</p>
       </div>
       <div>
-        <strong>Aloqa</strong>
+        <strong data-i18n="footer.contact">Aloqa</strong>
         <p class="muted">+998 71 200 00 01<br>info@grandluxe.uz</p>
       </div>
     </div>
@@ -223,6 +281,6 @@
     </div>
   </div>
 
-  <script type="module" src="./main.js?v=20260418a"></script>
+  <script type="module" src="./main.js?v=20260219a"></script>
 </body>
 </html>

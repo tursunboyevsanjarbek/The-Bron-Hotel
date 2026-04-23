@@ -7,6 +7,11 @@ import {
   serverTimestamp,
 } from "./firebase-client.js";
 import { getRoomById, rooms } from "./room-catalog.js";
+import { initLayout } from "./layout.js";
+import { applyPublicSiteSettings } from "./site-settings.js";
+
+initLayout();
+void applyPublicSiteSettings();
 
 const roomsGrid = document.getElementById("rooms-grid");
 const roomSelect = document.getElementById("room-id");
@@ -246,7 +251,7 @@ async function handleSubmit(event) {
         lockDates,
         createdAt: serverTimestamp(),
         updatedAt: serverTimestamp(),
-        userId: auth.currentUser?.uid || null,
+        userId: auth.currentUser?.uid ?? null,
       };
 
       transaction.set(BOOKING_COUNTER_DOC, { value: nextCounter }, { merge: true });
