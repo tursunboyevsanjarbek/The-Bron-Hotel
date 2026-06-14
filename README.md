@@ -34,7 +34,6 @@ Barcha SEO va havolalar faqat **https://grand-hotel-sanjarbek.web.app** uchun. G
 | Fayl | Vazifa |
 |------|--------|
 | `index.html`, `main.js` | Bron formasi, galereya, SEO |
-| `hotels.html`, `hotels.js` | Xonalar |
 | `account.html`, `account.js` | Ro‘yxatdan o‘tish / kirish |
 | `my-bookings.html`, `my-bookings.js` | Foydalanuvchi bronlari |
 | `login.html`, `login.js` | Admin kirish |

@@ -4,33 +4,49 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Dashboard</title>
-  <link rel="stylesheet" href="./style.css?v=20260219a">
+  <link rel="stylesheet" href="./style.css?v=20260423i">
 </head>
 <body class="dashboard-shell" data-page="admin">
   <header class="site-header" id="site-header"></header>
   <div class="dashboard-wrap">
-    <div class="dashboard-header">
-      <div>
-        <h1>Bronlar boshqaruvi</h1>
-        <p class="muted">Faqat admin foydalanuvchilar uchun real-time dashboard.</p>
+    <section class="admin-hero panel-card">
+      <div class="dashboard-header">
+        <div>
+          <p class="eyebrow">Admin panel</p>
+          <h1>Bronlar boshqaruvi</h1>
+          <p class="muted">Faqat admin foydalanuvchilar uchun real-time dashboard.</p>
+        </div>
+        <div class="dashboard-header-right">
+          <span id="admin-role-pill" class="role-pill role-admin">Admin</span>
+          <div class="action-stack">
+            <button id="export-csv" class="btn-outline" type="button">CSV eksport</button>
+            <a class="btn-outline" href="./index.html">Saytga qaytish</a>
+            <button id="logout-button" class="btn-danger" type="button">Chiqish</button>
+          </div>
+        </div>
       </div>
-      <div class="action-stack">
-        <button id="export-csv" class="btn-outline" type="button">CSV eksport</button>
-        <a class="btn-outline" href="./index.html">Saytga qaytish</a>
-        <button id="logout-button" class="btn-danger" type="button">Chiqish</button>
+      <div id="admin-permission-note" class="permission-note">
+        Standart admin rejimi: status/to'lov yangilash va loglarni ko'rish.
       </div>
-    </div>
+      <div class="capability-row">
+        <span class="capability-chip">Status update</span>
+        <span class="capability-chip">Payment update</span>
+        <span class="capability-chip capability-chip-super">Delete booking</span>
+        <span class="capability-chip capability-chip-super">Site settings</span>
+      </div>
+    </section>
 
     <div id="auth-warning" class="status-strip status-warn">Admin sessiya tekshirilmoqda...</div>
 
     <div class="dashboard-grid">
-      <aside class="panel-card">
+      <aside class="panel-card admin-sidebar">
         <h3>Filtrlar</h3>
         <div class="field">
           <label for="search-input">Qidiruv</label>
           <input id="search-input" type="search" placeholder="Ism, email, telefon">
         </div>
 
+        <h3>Bron holati</h3>
         <div class="filter-stack" id="status-filters">
           <button class="filter-chip active" data-filter="all" type="button">Barchasi</button>
           <button class="filter-chip" data-filter="pending" type="button">Kutilmoqda</button>
@@ -48,15 +64,17 @@
       </aside>
 
       <section>
-        <div class="stats-grid">
-          <div class="dashboard-card"><div class="muted">Jami bronlar</div><h2 id="stat-total">0</h2></div>
+        <div class="stats-grid admin-stats-grid">
+          <div class="dashboard-card stat-card-strong"><div class="muted">Jami bronlar</div><h2 id="stat-total">0</h2></div>
           <div class="dashboard-card"><div class="muted">Kutilmoqda</div><h2 id="stat-pending">0</h2></div>
+          <div class="dashboard-card"><div class="muted">Tasdiqlangan</div><h2 id="stat-confirmed">0</h2></div>
+          <div class="dashboard-card"><div class="muted">To'langan</div><h2 id="stat-paid">0</h2></div>
           <div class="dashboard-card"><div class="muted">Tushum</div><h2 id="stat-revenue">$0</h2></div>
         </div>
 
-        <div class="panel-card" style="margin-top:20px;">
+        <div class="panel-card admin-table-panel">
           <div class="table-wrap">
-            <table>
+            <table class="admin-bookings-table">
               <thead>
                 <tr>
                   <th>Bron</th>
@@ -76,10 +94,10 @@
       </section>
     </div>
 
-    <div class="panel-card" style="margin-top: 24px;">
-      <h3>Bosh sahifa matnlari</h3>
+    <div id="site-settings-panel" class="panel-card section-panel">
+      <h3>Bosh sahifa matnlari (faqat superadmin)</h3>
       <p class="muted">Firestore: <code>siteSettings/public</code> — saytga darhol aks etadi.</p>
-      <form id="site-settings-form" class="stack-form" style="max-width: 640px;">
+      <form id="site-settings-form" class="stack-form settings-form">
         <div class="field">
           <label for="set-hero-title">Hero sarlavha</label>
           <input id="set-hero-title" type="text" autocomplete="off">
@@ -100,8 +118,51 @@
         <p id="site-settings-msg" class="inline-note hidden"></p>
       </form>
     </div>
+
+    <div class="panel-card section-panel">
+      <h3>Admin activity log</h3>
+      <p class="muted">Kim, qachon va qaysi admin amali bajarganini ko‘rsatadi.</p>
+      <div class="action-stack log-actions">
+        <button id="export-logs-csv" class="btn-outline" type="button">Log CSV eksport</button>
+      </div>
+      <div class="filter-stack" id="log-filters">
+        <button class="filter-chip active" data-log-filter="all" type="button">Barchasi</button>
+        <button class="filter-chip" data-log-filter="booking_status_update" type="button">Status</button>
+        <button class="filter-chip" data-log-filter="booking_payment_update" type="button">To'lov</button>
+        <button class="filter-chip" data-log-filter="booking_delete" type="button">Delete</button>
+      </div>
+      <div class="field log-search-wrap">
+        <label for="log-search">Log qidiruv</label>
+        <input id="log-search" type="search" placeholder="admin email, booking ref, action">
+      </div>
+      <div class="table-wrap log-table-wrap">
+        <table class="admin-logs-table">
+          <thead>
+            <tr>
+              <th>Vaqt</th>
+              <th>Action</th>
+              <th>Admin</th>
+              <th>Booking</th>
+              <th>Tafsilot</th>
+            </tr>
+          </thead>
+          <tbody id="admin-logs-body">
+            <tr><td colspan="5" class="empty-state">Loglar yuklanmoqda...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 
-  <script type="module" src="./admin.js?v=20260219a"></script>
+  <div id="log-modal" class="modal-backdrop">
+    <div class="modal-card">
+      <h3>Log tafsiloti</h3>
+      <pre id="log-modal-content" class="muted" style="text-align:left; white-space:pre-wrap; max-height:300px; overflow:auto;"></pre>
+      <button id="log-modal-close" class="btn" type="button">Yopish</button>
+    </div>
+  </div>
+
+  <script type="module" src="./admin.js?v=20260423i"></script>
 </body>
 </html>
+

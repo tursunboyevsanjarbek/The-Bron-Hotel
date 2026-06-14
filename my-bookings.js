@@ -1,6 +1,6 @@
 import { auth, getAdminRole, myBookingsQuery, onAuthStateChanged, onSnapshot } from "./firebase-client.js";
-import { initLayout } from "./layout.js";
-import { t } from "./i18n.js";
+import { initLayout } from "./layout.js?v=20260423f";
+import { t } from "./i18n.js?v=20260423f";
 
 initLayout();
 
@@ -21,7 +21,7 @@ function renderBookings(rows) {
       <div class="empty-panel">
         <p class="muted" data-i18n="bookings.empty">${t("bookings.empty")}</p>
         <div class="action-stack" style="justify-content:center;margin-top:16px;">
-          <a class="btn" href="./hotels.html" data-i18n="bookings.searchCta">${t("bookings.searchCta")}</a>
+          <a class="btn" href="./index.html#rooms" data-i18n="bookings.searchCta">${t("bookings.searchCta")}</a>
           <a class="btn-outline" href="./account.html" data-i18n="bookings.loginCta">${t("bookings.loginCta")}</a>
         </div>
       </div>

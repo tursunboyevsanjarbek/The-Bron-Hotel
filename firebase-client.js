@@ -7,12 +7,14 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import {
   addDoc,
+  arrayUnion,
   collection,
   deleteDoc,
   doc,
   getDoc,
   getDocs,
   getFirestore,
+  limit,
   onSnapshot,
   orderBy,
   query,
@@ -46,6 +48,21 @@ async function getAdminRole(user) {
   return roleSnap.exists() && roleSnap.data().enabled === true;
 }
 
+async function getAdminAccess(user) {
+  if (!user) return { isAdmin: false, isSuperAdmin: false, role: null };
+  const roleRef = doc(db, "roles", "admins", "users", user.uid);
+  const roleSnap = await getDoc(roleRef);
+  if (!roleSnap.exists()) return { isAdmin: false, isSuperAdmin: false, role: null };
+  const data = roleSnap.data() || {};
+  const isAdmin = data.enabled === true;
+  const role = data.role || "superadmin";
+  return {
+    isAdmin,
+    isSuperAdmin: isAdmin && role === "superadmin",
+    role,
+  };
+}
+
 function bookingsQuery() {
   return query(collection(db, "bookings"), orderBy("createdAt", "desc"));
 }
@@ -58,14 +75,21 @@ function myBookingsQuery(uid) {
   );
 }
 
+function adminLogsQuery() {
+  return query(collection(db, "adminLogs"), orderBy("createdAt", "desc"), limit(200));
+}
+
 export {
   auth,
   addDoc,
+  arrayUnion,
+  adminLogsQuery,
   bookingsQuery,
   myBookingsQuery,
   db,
   deleteDoc,
   doc,
+  getAdminAccess,
   getAdminRole,
   getDoc,
   getDocs,
@@ -79,4 +103,5 @@ export {
   query,
   where,
   orderBy,
+  limit,
 };

@@ -12,6 +12,16 @@ service cloud.firestore {
         get(/databases/$(database)/documents/roles/admins/users/$(request.auth.uid)).data.enabled == true;
     }
 
+    function isSuperAdmin() {
+      return signedIn() &&
+        exists(/databases/$(database)/documents/roles/admins/users/$(request.auth.uid)) &&
+        get(/databases/$(database)/documents/roles/admins/users/$(request.auth.uid)).data.enabled == true &&
+        (
+          get(/databases/$(database)/documents/roles/admins/users/$(request.auth.uid)).data.role == "superadmin" ||
+          !get(/databases/$(database)/documents/roles/admins/users/$(request.auth.uid)).data.keys().hasAny(["role"])
+        );
+    }
+
     function validBookingCreate() {
       return request.resource.data.keys().hasAll([
           "bookingRef", "guestName", "email", "phone", "roomId", "roomName", "nightlyPrice",
@@ -39,12 +49,13 @@ service cloud.firestore {
       allow read: if isAdmin() ||
         (signedIn() && resource.data.userId == request.auth.uid);
       allow create: if validBookingCreate();
-      allow update, delete: if isAdmin();
+      allow update: if isAdmin();
+      allow delete: if isSuperAdmin();
     }
 
     match /siteSettings/{docId} {
       allow read: if true;
-      allow write: if isAdmin();
+      allow write: if isSuperAdmin();
     }
 
     match /bookingLocks/{lockId} {
@@ -69,6 +80,16 @@ service cloud.firestore {
     match /roles/admins/users/{uid} {
       allow read: if signedIn() && request.auth.uid == uid;
       allow write: if false;
+    }
+
+    match /adminLogs/{logId} {
+      allow read: if isAdmin();
+      allow create: if isAdmin() &&
+        request.resource.data.keys().hasAll([
+          "action", "adminUid", "createdAt"
+        ]) &&
+        request.resource.data.adminUid == request.auth.uid;
+      allow update, delete: if false;
     }
 
     match /{document=**} {

@@ -19,35 +19,27 @@
 
       <div id="account-message" class="status-strip status-warn hidden"></div>
 
-      <div id="account-guest-forms" class="account-grid">
-        <div>
-          <h2 class="h3-like" data-i18n="account.register">Ro‘yxatdan o‘tish</h2>
-          <form id="register-form" class="stack-form">
-            <div class="field">
-              <label for="reg-email" data-i18n="account.email">Email</label>
-              <input id="reg-email" type="email" autocomplete="email" required>
-            </div>
-            <div class="field">
-              <label for="reg-password" data-i18n="account.password">Parol</label>
-              <input id="reg-password" type="password" autocomplete="new-password" minlength="6" required>
-            </div>
-            <button class="btn" type="submit" data-i18n="account.register">Ro‘yxatdan o‘tish</button>
-          </form>
+      <div id="account-guest-forms" class="account-single">
+        <div class="auth-mode-switch" role="group" aria-label="Auth mode">
+          <button type="button" class="auth-mode-btn auth-mode-btn-active" data-auth-mode="login" data-i18n="account.login">Kirish</button>
+          <button type="button" class="auth-mode-btn" data-auth-mode="register" data-i18n="account.register">Ro‘yxatdan o‘tish</button>
         </div>
-        <div>
-          <h2 class="h3-like" data-i18n="account.login">Kirish</h2>
-          <form id="signin-form" class="stack-form">
-            <div class="field">
-              <label for="sign-email" data-i18n="account.email">Email</label>
-              <input id="sign-email" type="email" autocomplete="email" required>
-            </div>
-            <div class="field">
-              <label for="sign-password" data-i18n="account.password">Parol</label>
-              <input id="sign-password" type="password" autocomplete="current-password" required>
-            </div>
-            <button class="btn" type="submit" data-i18n="account.login">Kirish</button>
-          </form>
-        </div>
+        <h2 id="auth-form-title" class="h3-like" data-i18n="account.login">Kirish</h2>
+        <form id="auth-form" class="stack-form">
+          <div class="field">
+            <label for="auth-email" data-i18n="account.email">Email</label>
+            <input id="auth-email" type="email" autocomplete="email" required>
+          </div>
+          <div class="field">
+            <label for="auth-password" data-i18n="account.password">Parol</label>
+            <input id="auth-password" type="password" autocomplete="current-password" minlength="6" required>
+          </div>
+          <button id="auth-submit" class="btn" type="submit" data-i18n="account.login">Kirish</button>
+        </form>
+        <p class="inline-note account-switch-note">
+          <span id="auth-switch-text" data-i18n="account.noAccount">Akkauntingiz yo‘qmi?</span>
+          <button id="auth-switch-link" type="button" class="link-btn" data-i18n="account.register">Ro‘yxatdan o‘tish</button>
+        </p>
       </div>
 
       <div id="account-session" class="hidden">
@@ -60,6 +52,7 @@
     </div>
   </div>
 
-  <script type="module" src="./account.js?v=20260219a"></script>
+  <script type="module" src="./account.js?v=20260423g"></script>
 </body>
 </html>
+

@@ -6,9 +6,10 @@ import {
   runTransaction,
   serverTimestamp,
 } from "./firebase-client.js";
-import { getRoomById, rooms } from "./room-catalog.js";
-import { initLayout } from "./layout.js";
+import { getRoomById, getRooms } from "./room-catalog.js?v=20260423a";
+import { initLayout } from "./layout.js?v=20260423f";
 import { applyPublicSiteSettings } from "./site-settings.js";
+import { applyI18n, t } from "./i18n.js?v=20260423f";
 
 initLayout();
 void applyPublicSiteSettings();
@@ -18,7 +19,6 @@ const roomSelect = document.getElementById("room-id");
 const bookingForm = document.getElementById("booking-form");
 const summaryBox = document.getElementById("booking-summary");
 const formMessage = document.getElementById("form-message");
-const firebaseStatus = document.getElementById("firebase-status");
 const successModal = document.getElementById("success-modal");
 const modalText = document.getElementById("modal-text");
 const closeModal = document.getElementById("close-modal");
@@ -36,6 +36,7 @@ function buildDateRange(checkIn, checkOut) {
 }
 
 function renderRooms() {
+  const rooms = getRooms();
   roomsGrid.innerHTML = rooms
     .map(
       (room) => `
@@ -45,12 +46,12 @@ function renderRooms() {
           <span class="badge">${room.badge}</span>
           <h3>${room.name}</h3>
           <p class="muted">${room.description}</p>
-          <div class="price">$${room.price} <span class="price-unit">/ kecha</span></div>
-          <div class="muted room-capacity">Sig'im: ${room.capacity} kishi</div>
+          <div class="price">$${room.price} <span class="price-unit">${t("booking.perNight")}</span></div>
+          <div class="muted room-capacity">${t("booking.capacity")}: ${room.capacity} ${t("booking.person")}</div>
           <div class="amenities">
             ${room.amenities.map((item) => `<span class="amenity">${item}</span>`).join("")}
           </div>
-          <button class="btn btn-block" type="button" data-room="${room.id}">Shu xonani tanlash</button>
+          <button class="btn btn-block" type="button" data-room="${room.id}">${t("booking.selectRoomBtn")}</button>
         </div>
       </article>
     `,
@@ -67,12 +68,13 @@ function renderRooms() {
 }
 
 function renderRoomOptions() {
+  const rooms = getRooms();
   roomSelect.innerHTML =
-    `<option value="">Xona turini tanlang</option>` +
+    `<option value="">${t("booking.roomTypePlaceholder")}</option>` +
     rooms
       .map(
         (room) =>
-          `<option value="${room.id}">${room.name} — $${room.price}/kecha — ${room.capacity} kishi</option>`,
+          `<option value="${room.id}">${room.name} — $${room.price}${t("booking.perNightShort")} — ${room.capacity} ${t("booking.person")}</option>`,
       )
       .join("");
 }
@@ -102,22 +104,22 @@ function updateSummary() {
   const guestCount = Number(document.getElementById("guest-count").value || 0);
 
   if (!room || !checkIn || !checkOut) {
-    summaryBox.textContent = "Xona va sana tanlang, umumiy narx shu yerda ko'rsatiladi.";
+    summaryBox.textContent = t("booking.summary.default");
     return;
   }
 
   const nights = Math.round((new Date(checkOut) - new Date(checkIn)) / 86400000);
   if (nights <= 0) {
-    summaryBox.textContent = "Ketish sanasi kelish sanasidan keyin bo'lishi kerak.";
+    summaryBox.textContent = t("booking.summary.invalidDates");
     return;
   }
 
   const total = room.price * nights;
-  const capacityHint = guestCount > room.capacity ? " Sig'imdan oshib ketdi." : "";
+  const capacityHint = guestCount > room.capacity ? ` ${t("booking.summary.capacityExceeded")}` : "";
   summaryBox.innerHTML = `
     <strong>${room.name}</strong><br>
-    ${nights} kecha, ${guestCount || 0} mehmon<br>
-    Umumiy narx: <strong>$${total}</strong>.${capacityHint}
+    ${nights} ${t("booking.nights")}, ${guestCount || 0} ${t("booking.guests")}<br>
+    ${t("booking.summary.total")}: <strong>$${total}</strong>.${capacityHint}
   `;
 }
 
@@ -144,35 +146,35 @@ function validateForm(payload) {
 
   let valid = true;
   if (!payload.guestName || payload.guestName.trim().length < 3) {
-    setError("guestName", "Ism kamida 3 harf bo'lishi kerak.");
+    setError("guestName", t("booking.error.guestName"));
     valid = false;
   }
   if (!payload.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.email)) {
-    setError("email", "Email noto'g'ri.");
+    setError("email", t("booking.error.email"));
     valid = false;
   }
   if (!payload.phone || payload.phone.trim().length < 7) {
-    setError("phone", "Telefon raqam noto'g'ri.");
+    setError("phone", t("booking.error.phone"));
     valid = false;
   }
   if (!getRoomById(payload.roomId)) {
-    setError("roomId", "Xona turini tanlang.");
+    setError("roomId", t("booking.error.roomId"));
     valid = false;
   }
   if (!payload.checkIn) {
-    setError("checkIn", "Kelish sanasini tanlang.");
+    setError("checkIn", t("booking.error.checkIn"));
     valid = false;
   }
   if (!payload.checkOut) {
-    setError("checkOut", "Ketish sanasini tanlang.");
+    setError("checkOut", t("booking.error.checkOut"));
     valid = false;
   }
   if (!payload.guestCount) {
-    setError("guestCount", "Mehmonlar sonini tanlang.");
+    setError("guestCount", t("booking.error.guestCount"));
     valid = false;
   }
   if (!payload.paymentMethod) {
-    setError("paymentMethod", "To'lov usulini tanlang.");
+    setError("paymentMethod", t("booking.error.paymentMethod"));
     valid = false;
   }
   return valid;
@@ -196,21 +198,21 @@ async function handleSubmit(event) {
   };
 
   if (!validateForm(payload)) {
-    showMessage("status-error", "Formada xatolar bor. Iltimos tuzating.");
+    showMessage("status-error", t("booking.error.form"));
     return;
   }
 
   submitButton.disabled = true;
-  submitButton.textContent = "Saqlanmoqda...";
+  submitButton.textContent = t("booking.saving");
 
   try {
     const room = getRoomById(payload.roomId);
     const nights = Math.round(
       (new Date(payload.checkOut) - new Date(payload.checkIn)) / 86400000,
     );
-    if (!room || nights <= 0) throw new Error("Sanalar yoki xona ma'lumoti noto'g'ri.");
+    if (!room || nights <= 0) throw new Error(t("booking.error.invalidDateOrRoom"));
     if (payload.guestCount > room.capacity) {
-      throw new Error("Mehmonlar soni xona sig'imidan oshib ketdi.");
+      throw new Error(t("booking.error.capacity"));
     }
 
     const lockDates = buildDateRange(payload.checkIn, payload.checkOut);
@@ -219,7 +221,7 @@ async function handleSubmit(event) {
         const lockRef = doc(db, "bookingLocks", `${payload.roomId}_${date}`);
         const lockSnap = await transaction.get(lockRef);
         if (lockSnap.exists()) {
-          throw new Error("Tanlangan sanalarda xona band.");
+          throw new Error(t("booking.error.locked"));
         }
       }
 
@@ -272,22 +274,23 @@ async function handleSubmit(event) {
       return { bookingRef: bookingRefCode, status: "pending" };
     });
 
-    modalText.textContent = `Bron muvaffaqiyatli saqlandi. Bron raqami: ${result.bookingRef}. Holat: ${result.status}.`;
+    modalText.textContent = `${t("booking.success.saved")} ${t("booking.success.ref")}: ${result.bookingRef}. ${t("booking.success.status")}: ${result.status}.`;
     successModal.classList.add("open");
     bookingForm.reset();
     updateSummary();
-    showMessage("status-ok", "Bron bazaga saqlandi.");
+    showMessage("status-ok", t("booking.success.saved"));
   } catch (error) {
-    showMessage("status-error", error.message || "Bronni saqlashda xatolik yuz berdi.");
+    showMessage("status-error", error.message || t("booking.error.saveFailed"));
   } finally {
     submitButton.disabled = false;
-    submitButton.textContent = "Bronni tasdiqlash";
+    submitButton.textContent = t("booking.submit");
   }
 }
 
 renderRooms();
 renderRoomOptions();
 setMinDates();
+applyI18n(document.body);
 
 roomSelect.addEventListener("change", updateSummary);
 document.getElementById("guest-count").addEventListener("change", updateSummary);
@@ -296,7 +299,3 @@ closeModal.addEventListener("click", () => successModal.classList.remove("open")
 successModal.addEventListener("click", (event) => {
   if (event.target === successModal) successModal.classList.remove("open");
 });
-
-firebaseStatus.className = "status-strip status-ok";
-firebaseStatus.textContent =
-  "Firebase client tayyor. Spark rejimda bookinglar Firestore transaction orqali yaratiladi.";

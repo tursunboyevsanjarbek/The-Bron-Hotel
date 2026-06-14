@@ -36,58 +36,41 @@
       <div class="hero-bg" aria-hidden="true"></div>
       <div class="hero-inner">
         <div class="hero-copy">
-          <span class="badge">Real-time bronlash</span>
-          <h1 id="hero-title">Hashamat va qulaylik bir joyda</h1>
-          <p class="hero-lead" id="hero-lead">
-            Grand Luxe Hotel uchun zamonaviy bronlash tajribasi. Bronlar Firebase orqali xavfsiz saqlanadi,
-            band sanalar tekshiriladi va admin panel orqali boshqariladi.
-          </p>
+          <span class="badge" data-i18n="hero.badge">Real-time bronlash</span>
+          <h1 id="hero-title" data-i18n="hero.title">Hashamat va qulaylik bir joyda</h1>
           <div class="hero-cta-row">
-            <a class="btn" href="./hotels.html" data-i18n="hero.cta.search">Qidirish</a>
+            <a class="btn" href="#rooms" data-i18n="hero.cta.search">Xonalar</a>
             <a class="btn btn-secondary" href="#booking" data-i18n="hero.cta.book">Bron qilish</a>
           </div>
           <div class="hero-stats">
             <div class="stat-card">
               <strong>24/7</strong>
-              <div class="muted">Qabulxona</div>
+              <div class="muted" data-i18n="hero.stat.frontdesk">Qabulxona</div>
             </div>
             <div class="stat-card">
               <strong>3 xil</strong>
-              <div class="muted">Xona toifasi</div>
+              <div class="muted" data-i18n="hero.stat.roomTypes">Xona toifasi</div>
             </div>
             <div class="stat-card">
-              <strong>Real-time</strong>
-              <div class="muted">Mavjudlik</div>
+              <strong data-i18n="hero.stat.realtime">Real-time</strong>
+              <div class="muted" data-i18n="hero.stat.availability">Mavjudlik</div>
             </div>
             <div class="stat-card">
-              <strong>Admin</strong>
-              <div class="muted">Tasdiqlash</div>
+              <strong data-i18n="hero.stat.admin">Admin</strong>
+              <div class="muted" data-i18n="hero.stat.confirm">Tasdiqlash</div>
             </div>
           </div>
         </div>
 
-        <div class="hero-side">
-          <div class="booking-card glass-card">
-            <h2>Bron holati</h2>
-            <div id="firebase-status" class="status-strip status-warn">
-              Firebase ulanish tekshirilmoqda...
-            </div>
-            <p class="inline-note">
-              Bronlar Firestore transaksiyasi bilan yaratiladi: sanalar va bandlik serverda tekshiriladi.
-              Xatolik bo‘lsa, ochiq xabar ko‘rsatiladi.
-            </p>
-            <a class="btn" href="#booking">Hozir bron qiling</a>
-          </div>
-        </div>
       </div>
     </section>
 
     <section id="rooms" class="section section-alt">
       <div class="section-inner">
         <header class="section-head">
-          <p class="eyebrow">Katalog</p>
-          <h2>Xonalarimiz</h2>
-          <p class="section-lead">
+          <p class="eyebrow" data-i18n="rooms.eyebrow">Katalog</p>
+          <h2 data-i18n="rooms.title">Xonalarimiz</h2>
+          <p class="section-lead" data-i18n="rooms.lead">
             Narx, sig‘im va qulayliklar katalog modeli asosida ko‘rsatiladi — forma bilan bir xil ma’lumot.
           </p>
         </header>
@@ -98,27 +81,27 @@
     <section id="services" class="section">
       <div class="section-inner">
         <header class="section-head">
-          <p class="eyebrow">Tajriba</p>
-          <h2>Xizmatlar</h2>
-          <p class="section-lead">
+          <p class="eyebrow" data-i18n="services.eyebrow">Tajriba</p>
+          <h2 data-i18n="services.title">Xizmatlar</h2>
+          <p class="section-lead" data-i18n="services.lead">
             Premium xizmatlar bron jarayoni bilan uyg‘unlashgan — talablaringiz yozuvda saqlanadi.
           </p>
         </header>
         <div class="service-grid">
           <div class="service-card">
             <span class="service-icon" aria-hidden="true">✦</span>
-            <h3>Airport transfer</h3>
-            <p class="muted">So‘rov asosida premium kutib olish.</p>
+            <h3 data-i18n="services.airport.title">Airport transfer</h3>
+            <p class="muted" data-i18n="services.airport.lead">So‘rov asosida premium kutib olish.</p>
           </div>
           <div class="service-card">
             <span class="service-icon" aria-hidden="true">◇</span>
-            <h3>Spa &amp; Wellness</h3>
-            <p class="muted">Oldindan band qilinadigan dam olish.</p>
+            <h3 data-i18n="services.spa.title">Spa &amp; Wellness</h3>
+            <p class="muted" data-i18n="services.spa.lead">Oldindan band qilinadigan dam olish.</p>
           </div>
           <div class="service-card">
             <span class="service-icon" aria-hidden="true">◈</span>
-            <h3>Fine Dining</h3>
-            <p class="muted">Maxsus ovqatlanish talablari saqlanadi.</p>
+            <h3 data-i18n="services.dining.title">Fine Dining</h3>
+            <p class="muted" data-i18n="services.dining.lead">Maxsus ovqatlanish talablari saqlanadi.</p>
           </div>
         </div>
       </div>
@@ -127,7 +110,7 @@
     <section id="gallery" class="section section-alt">
       <div class="section-inner">
         <header class="section-head">
-          <p class="eyebrow">Gallery</p>
+          <p class="eyebrow" data-i18n="gallery.eyebrow">Gallery</p>
           <h2 data-i18n="gallery.title">Galereya</h2>
           <p class="section-lead" data-i18n="gallery.lead">Mehmonxona muhitidan lavhalar.</p>
         </header>
@@ -145,7 +128,7 @@
     <section id="location" class="section">
       <div class="section-inner">
         <header class="section-head">
-          <p class="eyebrow">Map</p>
+          <p class="eyebrow" data-i18n="map.eyebrow">Map</p>
           <h2 data-i18n="map.title">Joylashuv</h2>
           <p class="section-lead" data-i18n="map.lead">Toshkent markaziga yaqin qulay manzil.</p>
         </header>
@@ -164,16 +147,16 @@
       <div class="cta-banner-inner">
         <h2 id="cta-title" data-i18n="cta.title">Mukammal dam olishni boshlang</h2>
         <p id="cta-lead" data-i18n="cta.lead">Hashamatli xonalar va ishonchli onlayn bron.</p>
-        <a class="btn btn-cta-light" href="./hotels.html" data-i18n="hero.cta.search">Qidirish</a>
+        <a class="btn btn-cta-light" href="#rooms" data-i18n="hero.cta.search">Xonalar</a>
       </div>
     </section>
 
     <section id="booking" class="section section-booking">
       <div class="section-inner">
         <header class="section-head">
-          <p class="eyebrow">Bron</p>
-          <h2>Onlayn bron</h2>
-          <p class="section-lead">
+          <p class="eyebrow" data-i18n="booking.eyebrow">Bron</p>
+          <h2 data-i18n="booking.title">Onlayn bron</h2>
+          <p class="section-lead" data-i18n="booking.lead">
             Sanalar, sig‘im, bandlik va bron referensi server tomonda tekshiriladi.
           </p>
         </header>
@@ -182,77 +165,77 @@
           <form id="booking-form">
             <div class="form-grid">
               <div class="field">
-                <label for="guest-name">Ism va familiya</label>
+                <label for="guest-name" data-i18n="booking.label.name">Ism va familiya</label>
                 <input id="guest-name" name="guestName" type="text" required>
                 <span class="field-error" data-error-for="guestName"></span>
               </div>
               <div class="field">
-                <label for="guest-email">Email</label>
+                <label for="guest-email" data-i18n="booking.label.email">Email</label>
                 <input id="guest-email" name="email" type="email" required>
                 <span class="field-error" data-error-for="email"></span>
               </div>
               <div class="field">
-                <label for="guest-phone">Telefon</label>
+                <label for="guest-phone" data-i18n="booking.label.phone">Telefon</label>
                 <input id="guest-phone" name="phone" type="tel" required>
                 <span class="field-error" data-error-for="phone"></span>
               </div>
               <div class="field">
-                <label for="room-id">Xona turi</label>
+                <label for="room-id" data-i18n="booking.label.room">Xona turi</label>
                 <select id="room-id" name="roomId" required></select>
                 <span class="field-error" data-error-for="roomId"></span>
               </div>
               <div class="field">
-                <label for="check-in">Kelish sanasi</label>
+                <label for="check-in" data-i18n="booking.label.checkIn">Kelish sanasi</label>
                 <input id="check-in" name="checkIn" type="date" required>
                 <span class="field-error" data-error-for="checkIn"></span>
               </div>
               <div class="field">
-                <label for="check-out">Ketish sanasi</label>
+                <label for="check-out" data-i18n="booking.label.checkOut">Ketish sanasi</label>
                 <input id="check-out" name="checkOut" type="date" required>
                 <span class="field-error" data-error-for="checkOut"></span>
               </div>
               <div class="field">
-                <label for="guest-count">Mehmonlar soni</label>
+                <label for="guest-count" data-i18n="booking.label.guestCount">Mehmonlar soni</label>
                 <select id="guest-count" name="guestCount" required>
-                  <option value="">Tanlang</option>
-                  <option value="1">1 kishi</option>
-                  <option value="2">2 kishi</option>
-                  <option value="3">3 kishi</option>
-                  <option value="4">4 kishi</option>
+                  <option value="" data-i18n="booking.select.choose">Tanlang</option>
+                  <option value="1" data-i18n="booking.select.person1">1 kishi</option>
+                  <option value="2" data-i18n="booking.select.person2">2 kishi</option>
+                  <option value="3" data-i18n="booking.select.person3">3 kishi</option>
+                  <option value="4" data-i18n="booking.select.person4">4 kishi</option>
                 </select>
                 <span class="field-error" data-error-for="guestCount"></span>
               </div>
               <div class="field">
-                <label for="payment-method">To'lov usuli</label>
+                <label for="payment-method" data-i18n="booking.label.paymentMethod">To'lov usuli</label>
                 <select id="payment-method" name="paymentMethod" required>
-                  <option value="cash">Mehmonxonada to'lash</option>
+                  <option value="cash" data-i18n="booking.payment.cash">Mehmonxonada to'lash</option>
                   <option value="click">Click</option>
                   <option value="payme">Payme</option>
                 </select>
                 <span class="field-error" data-error-for="paymentMethod"></span>
               </div>
               <div class="field">
-                <label for="lead-source">Qayerdan bildingiz?</label>
+                <label for="lead-source" data-i18n="booking.label.source">Qayerdan bildingiz?</label>
                 <select id="lead-source" name="source">
-                  <option value="">Tanlang</option>
+                  <option value="" data-i18n="booking.select.choose">Tanlang</option>
                   <option value="google">Google</option>
                   <option value="instagram">Instagram</option>
-                  <option value="friends">Do'stlar orqali</option>
-                  <option value="other">Boshqa</option>
+                  <option value="friends" data-i18n="booking.source.friends">Do'stlar orqali</option>
+                  <option value="other" data-i18n="booking.source.other">Boshqa</option>
                 </select>
               </div>
               <div class="field field-full">
-                <label for="guest-notes">Maxsus talablar</label>
+                <label for="guest-notes" data-i18n="booking.label.notes">Maxsus talablar</label>
                 <textarea id="guest-notes" name="notes"></textarea>
               </div>
             </div>
 
             <div id="booking-summary" class="booking-summary">
-              Xona va sana tanlang, umumiy narx shu yerda ko'rsatiladi.
+              <span data-i18n="booking.summary.default">Xona va sana tanlang, umumiy narx shu yerda ko'rsatiladi.</span>
             </div>
 
             <div class="form-actions">
-              <button id="submit-booking" class="btn" type="submit">Bronni tasdiqlash</button>
+              <button id="submit-booking" class="btn" type="submit" data-i18n="booking.submit">Bronni tasdiqlash</button>
             </div>
           </form>
         </div>
@@ -275,12 +258,13 @@
 
   <div id="success-modal" class="modal-backdrop">
     <div class="modal-card">
-      <h3>Bron qabul qilindi</h3>
+      <h3 data-i18n="booking.modal.title">Bron qabul qilindi</h3>
       <p id="modal-text" class="muted"></p>
-      <button id="close-modal" class="btn" type="button">Yopish</button>
+      <button id="close-modal" class="btn" type="button" data-i18n="booking.modal.close">Yopish</button>
     </div>
   </div>
 
-  <script type="module" src="./main.js?v=20260219a"></script>
+  <script type="module" src="./main.js?v=20260423h"></script>
 </body>
 </html>
+

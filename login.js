@@ -3,7 +3,7 @@ import {
   getAdminRole,
   onAuthStateChanged,
 } from "./firebase-client.js";
-import { initLayout } from "./layout.js";
+import { initLayout } from "./layout.js?v=20260423f";
 
 initLayout();
 import {
